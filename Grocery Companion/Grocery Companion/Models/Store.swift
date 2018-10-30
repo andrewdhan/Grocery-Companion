@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Store{
+struct Store: Equatable{
     let name: String
     let latitude: Double
     let longitude: Double

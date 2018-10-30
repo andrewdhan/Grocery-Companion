@@ -8,7 +8,8 @@
 
 import Foundation
 
-struct Price{
+struct Price: Equatable{
+    
     let value: NSNumber
     let store: Store
     let date: Date

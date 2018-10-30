@@ -8,7 +8,8 @@
 
 import UIKit
 
-class GroceryListTableViewController: UITableViewController {
+class GroceryListTableViewController: UITableViewController, ItemTableViewCellDelegate{
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,43 +19,31 @@ class GroceryListTableViewController: UITableViewController {
     // MARK: - Table view data source
  
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return groceryItemController.groceryList.count
     }
  
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath) as? ItemTableViewCell else {return UITableViewCell()}
+        
+        cell.groceryItem = groceryItemController.groceryList[indexPath.row]
+        cell.delegate = self
         return cell
     }
   
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    
     // IBAction
     @IBAction func addItem(_ sender: Any) {
+        guard let text = inputTextField.text, !text.isEmpty else {return}
+        groceryItemController.addItem(withName: text)
+        tableView.reloadData()
     }
     
-   
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    //MARK: - ItemTableViewCellDelegate Methods
+    func toggleCheck(for item: GroceryItem) {
+        groceryItemController.checkOffItem(item: item)
+        tableView.reloadData()
     }
- 
 
     //MARK: - Properties
     @IBOutlet weak var inputTextField: UITextField!
-    
+    let groceryItemController = GroceryItemController.shared
 }

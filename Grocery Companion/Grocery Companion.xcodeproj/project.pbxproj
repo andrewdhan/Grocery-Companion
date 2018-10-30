@@ -13,6 +13,11 @@
 		108D95D72188C19600D1B04D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 108D95D52188C19600D1B04D /* LaunchScreen.storyboard */; };
 		108D95E02188C2C600D1B04D /* GroceryListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108D95DF2188C2C600D1B04D /* GroceryListTableViewController.swift */; };
 		108D95E32188D56500D1B04D /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108D95E22188D56500D1B04D /* ItemTableViewCell.swift */; };
+		108D95E62188E6D100D1B04D /* GroceryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108D95E52188E6D100D1B04D /* GroceryItem.swift */; };
+		108D95E92188E78700D1B04D /* Price.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108D95E82188E78700D1B04D /* Price.swift */; };
+		108D95EB2188E7FF00D1B04D /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108D95EA2188E7FF00D1B04D /* File.swift */; };
+		108D95EF2188E87D00D1B04D /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108D95EE2188E87D00D1B04D /* Transaction.swift */; };
+		108D95F12188EA2C00D1B04D /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108D95F02188EA2C00D1B04D /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +29,11 @@
 		108D95D82188C19600D1B04D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		108D95DF2188C2C600D1B04D /* GroceryListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryListTableViewController.swift; sourceTree = "<group>"; };
 		108D95E22188D56500D1B04D /* ItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
+		108D95E52188E6D100D1B04D /* GroceryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryItem.swift; sourceTree = "<group>"; };
+		108D95E82188E78700D1B04D /* Price.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Price.swift; sourceTree = "<group>"; };
+		108D95EA2188E7FF00D1B04D /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		108D95EE2188E87D00D1B04D /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
+		108D95F02188EA2C00D1B04D /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,8 +67,10 @@
 			isa = PBXGroup;
 			children = (
 				108D95D02188C19400D1B04D /* Main.storyboard */,
+				108D95E72188E6DD00D1B04D /* Models */,
 				108D95E42188D57100D1B04D /* View */,
 				108D95E12188C2D000D1B04D /* View Controllers */,
+				108D95F22188EA3500D1B04D /* Helper */,
 				108D95DE2188C1DE00D1B04D /* Resources */,
 			);
 			path = "Grocery Companion";
@@ -89,6 +101,25 @@
 				108D95E22188D56500D1B04D /* ItemTableViewCell.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		108D95E72188E6DD00D1B04D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				108D95E52188E6D100D1B04D /* GroceryItem.swift */,
+				108D95E82188E78700D1B04D /* Price.swift */,
+				108D95EA2188E7FF00D1B04D /* File.swift */,
+				108D95EE2188E87D00D1B04D /* Transaction.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		108D95F22188EA3500D1B04D /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				108D95F02188EA2C00D1B04D /* Extensions.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -162,8 +193,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				108D95EF2188E87D00D1B04D /* Transaction.swift in Sources */,
 				108D95CD2188C19400D1B04D /* AppDelegate.swift in Sources */,
+				108D95EB2188E7FF00D1B04D /* File.swift in Sources */,
 				108D95E32188D56500D1B04D /* ItemTableViewCell.swift in Sources */,
+				108D95E62188E6D100D1B04D /* GroceryItem.swift in Sources */,
+				108D95F12188EA2C00D1B04D /* Extensions.swift in Sources */,
+				108D95E92188E78700D1B04D /* Price.swift in Sources */,
 				108D95E02188C2C600D1B04D /* GroceryListTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

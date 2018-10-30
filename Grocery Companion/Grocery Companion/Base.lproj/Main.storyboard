@@ -186,16 +186,16 @@
                                                 <state key="normal" title="Upload Receipt"/>
                                             </button>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="rGh-7w-lpn">
-                                                <rect key="frame" x="0.0" y="38" width="343" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="38" width="343" height="24.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cp8-3D-rVW">
-                                                        <rect key="frame" x="0.0" y="0.0" width="46" height="20.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="46" height="24.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uZ0-Xr-23x">
-                                                        <rect key="frame" x="54" y="0.0" width="289" height="20.5"/>
+                                                        <rect key="frame" x="54" y="0.0" width="289" height="24.5"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
@@ -203,16 +203,16 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="DyP-Ia-bbW">
-                                                <rect key="frame" x="0.0" y="66.5" width="343" height="23.5"/>
+                                                <rect key="frame" x="0.0" y="70.5" width="343" height="25"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Store:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hpg-ru-kNv">
-                                                        <rect key="frame" x="0.0" y="0.0" width="46" height="23.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="46" height="25"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="X9D-1X-99U">
-                                                        <rect key="frame" x="54" y="0.0" width="289" height="23.5"/>
+                                                        <rect key="frame" x="54" y="0.0" width="289" height="25"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
@@ -220,16 +220,16 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Jhu-xt-w7Y">
-                                                <rect key="frame" x="0.0" y="98" width="343" height="30"/>
+                                                <rect key="frame" x="0.0" y="103.5" width="343" height="24.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XWB-qX-Zlb">
-                                                        <rect key="frame" x="0.0" y="0.0" width="46" height="30"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="46" height="24.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zk1-Hn-agB">
-                                                        <rect key="frame" x="54" y="0.0" width="289" height="30"/>
+                                                        <rect key="frame" x="54" y="0.0" width="289" height="24.5"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
@@ -240,6 +240,8 @@
                                         <constraints>
                                             <constraint firstItem="zk1-Hn-agB" firstAttribute="width" secondItem="uZ0-Xr-23x" secondAttribute="width" id="5eg-q4-c0J"/>
                                             <constraint firstItem="HrJ-jw-fsU" firstAttribute="centerX" secondItem="Ffp-mq-mip" secondAttribute="centerX" id="I7z-Na-CiY"/>
+                                            <constraint firstItem="zk1-Hn-agB" firstAttribute="height" secondItem="uZ0-Xr-23x" secondAttribute="height" id="L8s-1Q-E1C"/>
+                                            <constraint firstItem="X9D-1X-99U" firstAttribute="height" secondItem="uZ0-Xr-23x" secondAttribute="height" id="moY-3l-dxw"/>
                                             <constraint firstItem="X9D-1X-99U" firstAttribute="width" secondItem="uZ0-Xr-23x" secondAttribute="width" id="zHL-vi-mjF"/>
                                         </constraints>
                                     </stackView>

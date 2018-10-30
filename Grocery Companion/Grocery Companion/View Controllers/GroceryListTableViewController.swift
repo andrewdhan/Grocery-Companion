@@ -27,6 +27,7 @@ class GroceryListTableViewController: UITableViewController, ItemTableViewCellDe
         
         cell.groceryItem = groceryItemController.groceryList[indexPath.row]
         cell.delegate = self
+        
         return cell
     }
   

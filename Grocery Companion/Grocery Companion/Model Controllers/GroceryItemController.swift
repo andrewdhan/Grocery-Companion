@@ -18,7 +18,7 @@ class GroceryItemController {
     func addItem(withName name: String){
         let index = indexInAllItems(withName: name)
         
-        if index > 0 {
+        if index >= 0 {
             allItems[index].isInGroceryList = true
         } else {
             let newItem = GroceryItem(name: name)

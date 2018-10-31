@@ -44,7 +44,7 @@ class GroceryListTableViewController: UITableViewController, ItemTableViewCellDe
   
     // IBAction
     @IBAction func addItem(_ sender: Any?) {
-        guard inputTextField.isFirstResponder == true,
+        guard inputTextField.isFirstResponder,
             let text = inputTextField.text,
             !text.isEmpty else {return}
         
@@ -55,7 +55,8 @@ class GroceryListTableViewController: UITableViewController, ItemTableViewCellDe
     }
     
     @IBAction func clearCheckedItems(_ sender: Any) {
-        guard inputTextField.isFirstResponder == false else {return}
+        guard !inputTextField.isFirstResponder else {return}
+
         groceryItemController.clearCheckedItems()
         addClearButton.setTitle("Add Item", for: .normal)
         tableView.reloadData()
@@ -74,11 +75,12 @@ class GroceryListTableViewController: UITableViewController, ItemTableViewCellDe
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         addItem(nil)
         inputTextField.becomeFirstResponder()
+        addClearButton.setTitle("Add Item", for: .normal)
         return true
     }
     //MARK: - ItemTableViewCellDelegate Methods
     func toggleCheck(for item: GroceryItem) {
-        if inputTextField.isFirstResponder == true{
+        if inputTextField.isFirstResponder{
             inputTextField.resignFirstResponder()
         }
         groceryItemController.checkOffItem(item: item)
@@ -87,7 +89,9 @@ class GroceryListTableViewController: UITableViewController, ItemTableViewCellDe
     
     //MARK: - Private Method
     @objc func dismissKeyboard (_ sender: UITapGestureRecognizer) {
+        if inputTextField.isFirstResponder{
         inputTextField.resignFirstResponder()
+        }
     }
 
     //MARK: - Properties

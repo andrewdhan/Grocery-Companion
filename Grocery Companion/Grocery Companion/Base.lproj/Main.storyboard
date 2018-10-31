@@ -195,6 +195,9 @@
                                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HrJ-jw-fsU">
                                                 <rect key="frame" x="0.0" y="0.0" width="343" height="30"/>
                                                 <state key="normal" title="Upload Receipt"/>
+                                                <connections>
+                                                    <segue destination="Jtc-Ya-TW0" kind="presentation" id="IRk-Yf-CiI"/>
+                                                </connections>
                                             </button>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="rGh-7w-lpn">
                                                 <rect key="frame" x="0.0" y="38" width="343" height="24.5"/>
@@ -304,6 +307,91 @@
             </objects>
             <point key="canvasLocation" x="1986" y="1014"/>
         </scene>
+        <!--Camera Preview View Controller-->
+        <scene sceneID="neC-WN-noD">
+            <objects>
+                <viewController id="Jtc-Ya-TW0" customClass="CameraPreviewViewController" customModule="Grocery_Companion" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="chd-hB-i9c">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tLp-I2-TZl" customClass="PreviewView" customModule="Grocery_Companion" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="corner tl" translatesAutoresizingMaskIntoConstraints="NO" id="q97-cK-g3i">
+                                        <rect key="frame" x="70" y="80" width="69" height="75"/>
+                                        <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="69" id="DTA-0u-uhe"/>
+                                            <constraint firstAttribute="height" constant="75" id="dkW-k7-ilN"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="corner br" translatesAutoresizingMaskIntoConstraints="NO" id="x0L-l0-MHw">
+                                        <rect key="frame" x="236" y="492" width="69" height="75"/>
+                                        <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="corner bl" translatesAutoresizingMaskIntoConstraints="NO" id="o16-ng-y4H">
+                                        <rect key="frame" x="70" y="492" width="69" height="75"/>
+                                        <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="corner tr" translatesAutoresizingMaskIntoConstraints="NO" id="7Mt-WV-5cv">
+                                        <rect key="frame" x="236" y="80" width="69" height="75"/>
+                                        <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Align receipt to corners then tap to take a photo" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9XF-fp-qNS">
+                                        <rect key="frame" x="112.5" y="308" width="150" height="31.5"/>
+                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="150" id="Hi1-lo-HVN"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="13"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="o16-ng-y4H" secondAttribute="bottom" constant="80" id="3HD-Qz-16k"/>
+                                    <constraint firstItem="q97-cK-g3i" firstAttribute="top" secondItem="tLp-I2-TZl" secondAttribute="top" constant="80" id="9Tp-z7-csB"/>
+                                    <constraint firstItem="7Mt-WV-5cv" firstAttribute="width" secondItem="q97-cK-g3i" secondAttribute="width" id="EYc-IF-aIQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="x0L-l0-MHw" secondAttribute="trailing" constant="70" id="HMx-rZ-wmf"/>
+                                    <constraint firstItem="x0L-l0-MHw" firstAttribute="height" secondItem="q97-cK-g3i" secondAttribute="height" id="Lao-qe-blO"/>
+                                    <constraint firstAttribute="trailing" secondItem="7Mt-WV-5cv" secondAttribute="trailing" constant="70" id="MGH-aK-iME"/>
+                                    <constraint firstItem="9XF-fp-qNS" firstAttribute="centerY" secondItem="tLp-I2-TZl" secondAttribute="centerY" id="QJ2-us-GiP"/>
+                                    <constraint firstItem="o16-ng-y4H" firstAttribute="height" secondItem="q97-cK-g3i" secondAttribute="height" id="VIh-gI-ie8"/>
+                                    <constraint firstItem="o16-ng-y4H" firstAttribute="width" secondItem="q97-cK-g3i" secondAttribute="width" id="Wul-8Y-Hqa"/>
+                                    <constraint firstItem="7Mt-WV-5cv" firstAttribute="top" secondItem="tLp-I2-TZl" secondAttribute="top" constant="80" id="Wyj-ZP-EUa"/>
+                                    <constraint firstItem="q97-cK-g3i" firstAttribute="leading" secondItem="tLp-I2-TZl" secondAttribute="leading" constant="70" id="fKT-Pg-iPd"/>
+                                    <constraint firstAttribute="bottom" secondItem="x0L-l0-MHw" secondAttribute="bottom" constant="80" id="gEv-TH-2XI"/>
+                                    <constraint firstItem="o16-ng-y4H" firstAttribute="leading" secondItem="tLp-I2-TZl" secondAttribute="leading" constant="70" id="r5D-OW-OTe"/>
+                                    <constraint firstItem="9XF-fp-qNS" firstAttribute="centerX" secondItem="tLp-I2-TZl" secondAttribute="centerX" id="spg-aR-Zxm"/>
+                                    <constraint firstItem="7Mt-WV-5cv" firstAttribute="height" secondItem="q97-cK-g3i" secondAttribute="height" id="wJe-pd-3Tg"/>
+                                    <constraint firstItem="x0L-l0-MHw" firstAttribute="width" secondItem="q97-cK-g3i" secondAttribute="width" id="wmj-PW-URt"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="bA6-DM-4U9" appends="YES" id="mcG-PA-Re1"/>
+                                </connections>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ahi-zH-ehR" firstAttribute="bottom" secondItem="tLp-I2-TZl" secondAttribute="bottom" id="3Mj-ne-fGr"/>
+                            <constraint firstItem="ahi-zH-ehR" firstAttribute="trailing" secondItem="tLp-I2-TZl" secondAttribute="trailing" id="8tl-9V-e1q"/>
+                            <constraint firstItem="tLp-I2-TZl" firstAttribute="leading" secondItem="ahi-zH-ehR" secondAttribute="leading" id="CqK-vS-xlc"/>
+                            <constraint firstItem="tLp-I2-TZl" firstAttribute="top" secondItem="ahi-zH-ehR" secondAttribute="top" id="Y8Y-PJ-IPb"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ahi-zH-ehR"/>
+                    </view>
+                    <connections>
+                        <outlet property="previewView" destination="tLp-I2-TZl" id="QYH-ov-F2s"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="F0j-eQ-6IC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="bA6-DM-4U9"/>
+            </objects>
+            <point key="canvasLocation" x="2756" y="1014.2428785607198"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="H5k-k4-mak">
             <objects>
@@ -325,6 +413,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="corner bl" width="135" height="206"/>
+        <image name="corner br" width="135" height="206"/>
+        <image name="corner tl" width="135" height="206"/>
+        <image name="corner tr" width="135" height="206"/>
         <image name="list" width="32" height="32"/>
         <image name="map" width="32" height="32"/>
         <image name="receipt" width="32" height="32"/>

@@ -19,6 +19,8 @@
 		108D95EF2188E87D00D1B04D /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108D95EE2188E87D00D1B04D /* Transaction.swift */; };
 		108D95F12188EA2C00D1B04D /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108D95F02188EA2C00D1B04D /* Extensions.swift */; };
 		108D95F42188FE5900D1B04D /* GroceryItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108D95F32188FE5900D1B04D /* GroceryItemController.swift */; };
+		108D95F721896B0300D1B04D /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108D95F621896B0300D1B04D /* PreviewView.swift */; };
+		108D95F921896BAE00D1B04D /* CameraPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108D95F821896BAE00D1B04D /* CameraPreviewViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +38,8 @@
 		108D95EE2188E87D00D1B04D /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		108D95F02188EA2C00D1B04D /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		108D95F32188FE5900D1B04D /* GroceryItemController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryItemController.swift; sourceTree = "<group>"; };
+		108D95F621896B0300D1B04D /* PreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
+		108D95F821896BAE00D1B04D /* CameraPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreviewViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				108D95DF2188C2C600D1B04D /* GroceryListTableViewController.swift */,
+				108D95F821896BAE00D1B04D /* CameraPreviewViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -102,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				108D95E22188D56500D1B04D /* ItemTableViewCell.swift */,
+				108D95F621896B0300D1B04D /* PreviewView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -206,8 +212,10 @@
 			files = (
 				108D95EF2188E87D00D1B04D /* Transaction.swift in Sources */,
 				108D95CD2188C19400D1B04D /* AppDelegate.swift in Sources */,
+				108D95F721896B0300D1B04D /* PreviewView.swift in Sources */,
 				108D95EB2188E7FF00D1B04D /* Store.swift in Sources */,
 				108D95E32188D56500D1B04D /* ItemTableViewCell.swift in Sources */,
+				108D95F921896BAE00D1B04D /* CameraPreviewViewController.swift in Sources */,
 				108D95E62188E6D100D1B04D /* GroceryItem.swift in Sources */,
 				108D95F12188EA2C00D1B04D /* Extensions.swift in Sources */,
 				108D95E92188E78700D1B04D /* Price.swift in Sources */,

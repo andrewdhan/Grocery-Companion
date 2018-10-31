@@ -369,9 +369,6 @@
                                     <constraint firstItem="7Mt-WV-5cv" firstAttribute="height" secondItem="q97-cK-g3i" secondAttribute="height" id="wJe-pd-3Tg"/>
                                     <constraint firstItem="x0L-l0-MHw" firstAttribute="width" secondItem="q97-cK-g3i" secondAttribute="width" id="wmj-PW-URt"/>
                                 </constraints>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="bA6-DM-4U9" appends="YES" id="mcG-PA-Re1"/>
-                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -384,11 +381,15 @@
                         <viewLayoutGuide key="safeArea" id="ahi-zH-ehR"/>
                     </view>
                     <connections>
+                        <outlet property="frameBL" destination="o16-ng-y4H" id="d8I-Va-KjI"/>
+                        <outlet property="frameBR" destination="x0L-l0-MHw" id="mQr-4C-vCb"/>
+                        <outlet property="frameTL" destination="q97-cK-g3i" id="lHu-19-R9y"/>
+                        <outlet property="frameTR" destination="7Mt-WV-5cv" id="AWf-My-3ya"/>
+                        <outlet property="instructionLabel" destination="9XF-fp-qNS" id="Ip6-iw-fUe"/>
                         <outlet property="previewView" destination="tLp-I2-TZl" id="QYH-ov-F2s"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F0j-eQ-6IC" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="bA6-DM-4U9"/>
             </objects>
             <point key="canvasLocation" x="2756" y="1014.2428785607198"/>
         </scene>

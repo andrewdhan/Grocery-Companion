@@ -10,7 +10,16 @@ import UIKit
 import AVFoundation
 
 class CameraPreviewViewController: UIViewController {
-
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        frames = [frameTL,frameTR,frameBR, frameBL]
+        for frame in frames{
+            frame.tintColor = UIColor.darkGray
+        }
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapScreen(_:)))
+        self.previewView.addGestureRecognizer(tapGesture)
+    }
     override func viewWillAppear(_ animated: Bool) {
         
         switch AVCaptureDevice.authorizationStatus(for: .video) {
@@ -39,7 +48,14 @@ class CameraPreviewViewController: UIViewController {
         captureSession.stopRunning()
     }
     
-    func setupCaptureSession(){
+    
+    //MARK: - Private Methods
+    @objc func tapScreen(_ sender: Any?) {
+     let photoSetting = AVCapturePhotoSettings()
+        photoSetting
+    }
+    
+    private func setupCaptureSession(){
         captureSession.beginConfiguration()
         let photoDevice = AVCaptureDevice.default(.builtInWideAngleCamera,
                                                   for: .video, position: .unspecified)
@@ -49,14 +65,24 @@ class CameraPreviewViewController: UIViewController {
             else { return }
         
         captureSession.addInput(photoDeviceInput)
-        let photoOutput = AVCapturePhotoOutput()
+        
         guard captureSession.canAddOutput(photoOutput) else { return }
         captureSession.sessionPreset = .photo
         captureSession.addOutput(photoOutput)
         captureSession.commitConfiguration()
         self.previewView.videoPreviewLayer.session = self.captureSession
     }
-    let captureSession = AVCaptureSession()
     
+    //MARK: - Properties
+    let captureSession = AVCaptureSession()
+    let photoOutput = AVCapturePhotoOutput()
+    
+    private var frames = [UIImageView]()
+    @IBOutlet weak var frameTL: UIImageView!
+    @IBOutlet weak var frameTR: UIImageView!
+    @IBOutlet weak var frameBR: UIImageView!
+    @IBOutlet weak var frameBL: UIImageView!
+    
+    @IBOutlet weak var instructionLabel: UILabel!
     @IBOutlet weak var previewView: PreviewView!
 }

@@ -7,9 +7,10 @@
 //
 
 import UIKit
+import CoreImage
 import AVFoundation
 
-class CameraPreviewViewController: UIViewController {
+class CameraPreviewViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,12 +48,47 @@ class CameraPreviewViewController: UIViewController {
         super.viewDidAppear(animated)
         captureSession.stopRunning()
     }
-    
-    
+    //MARK: - AVCapturePhotoCaptureDelegate Methods
+    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
+        guard let photoData = photo.fileDataRepresentation(),
+            let image = UIImage(data: photoData) else {
+                NSLog("Error with photoData")
+                return
+        }
+        let croppedFrame = CGRect(x: 70, y: 80, width: image.size.width-140, height: image.size.height - 160)
+        let croppedImage = cropImage(image, toRect: croppedFrame, viewWidth: image.size.width-140, viewHeight: image.size.height-160)
+        
+        testView.image = croppedImage!
+        scans.append(image)
+        
+    }
     //MARK: - Private Methods
+    func cropImage(_ inputImage: UIImage, toRect cropRect: CGRect, viewWidth: CGFloat, viewHeight: CGFloat) -> UIImage?
+    {
+        let imageViewScale = max(inputImage.size.width / viewWidth,
+                                 inputImage.size.height / viewHeight)
+        
+        // Scale cropRect to handle images larger than shown-on-screen size
+        let cropZone = CGRect(x:cropRect.origin.x * imageViewScale,
+                              y:cropRect.origin.y * imageViewScale,
+                              width:cropRect.size.width * imageViewScale,
+                              height:cropRect.size.height * imageViewScale)
+        
+        // Perform cropping in Core Graphics
+        guard let cutImageRef: CGImage = inputImage.cgImage?.cropping(to:cropZone)
+            else {
+                return nil
+        }
+        
+        // Return image to UIImage
+        let croppedImage: UIImage = UIImage(cgImage: cutImageRef)
+        return croppedImage
+    }
+    
+    
     @objc func tapScreen(_ sender: Any?) {
-     let photoSetting = AVCapturePhotoSettings()
-        photoSetting
+        let photoSetting = AVCapturePhotoSettings()
+        self.photoOutput.capturePhoto(with: photoSetting, delegate: self)
     }
     
     private func setupCaptureSession(){
@@ -77,12 +113,16 @@ class CameraPreviewViewController: UIViewController {
     let captureSession = AVCaptureSession()
     let photoOutput = AVCapturePhotoOutput()
     
+    var scans = [UIImage]()
+    
+    @IBOutlet weak var testView: UIImageView!
     private var frames = [UIImageView]()
     @IBOutlet weak var frameTL: UIImageView!
     @IBOutlet weak var frameTR: UIImageView!
     @IBOutlet weak var frameBR: UIImageView!
     @IBOutlet weak var frameBL: UIImageView!
     
+    private let context = CIContext(options: nil)
     @IBOutlet weak var instructionLabel: UILabel!
     @IBOutlet weak var previewView: PreviewView!
 }

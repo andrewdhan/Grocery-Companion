@@ -90,9 +90,11 @@
                                         <constraint firstItem="rDQ-NN-CWA" firstAttribute="top" secondItem="RIn-Z4-GGa" secondAttribute="top" constant="5" id="l9E-u0-MqM"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <gestureRecognizers/>
                                 <connections>
                                     <outlet property="checkBox" destination="qXV-8U-HQ4" id="JPZ-R2-Q7c"/>
                                     <outlet property="itemLabel" destination="XhV-z6-WVR" id="UjI-3q-pyK"/>
+                                    <outletCollection property="gestureRecognizers" destination="gJN-5j-yuj" appends="YES" id="Jg0-eN-RiS"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -109,6 +111,7 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="120-ha-gnz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="gJN-5j-yuj"/>
             </objects>
             <point key="canvasLocation" x="473" y="1015"/>
         </scene>

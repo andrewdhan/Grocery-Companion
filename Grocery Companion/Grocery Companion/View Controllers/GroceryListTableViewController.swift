@@ -14,19 +14,29 @@ class GroceryListTableViewController: UITableViewController, ItemTableViewCellDe
     override func viewDidLoad() {
         super.viewDidLoad()
         inputTextField.delegate = self
+        addClearButton.setTitle("Add Item", for: .normal)
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard(_:)))
+        self.view.addGestureRecognizer(tapGesture)
 
     }
-
     // MARK: - Table view data source
  
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        hasCheckedItems = false
         return groceryItemController.groceryList.count
     }
  
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath) as? ItemTableViewCell else {return UITableViewCell()}
         
-        cell.groceryItem = groceryItemController.groceryList[indexPath.row]
+        let groceryItem = groceryItemController.groceryList[indexPath.row]
+        if groceryItem.isChecked && addClearButton.titleLabel?.text == "Add Item" {
+            hasCheckedItems = true
+            addClearButton.setTitle("Clear ✔️", for: .normal)
+        }
+        cell.groceryItem = groceryItem
+        
         cell.delegate = self
         
         return cell
@@ -47,6 +57,7 @@ class GroceryListTableViewController: UITableViewController, ItemTableViewCellDe
     @IBAction func clearCheckedItems(_ sender: Any) {
         guard inputTextField.isFirstResponder == false else {return}
         groceryItemController.clearCheckedItems()
+        addClearButton.setTitle("Add Item", for: .normal)
         tableView.reloadData()
     }
     //MARK: - UITTextFieldDelegate Methods
@@ -54,7 +65,11 @@ class GroceryListTableViewController: UITableViewController, ItemTableViewCellDe
         addClearButton.setTitle("Add Item", for: .normal)
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
-        addClearButton.setTitle("Clear Checked", for: .normal)
+        if hasCheckedItems {
+        addClearButton.setTitle("Clear ✔️", for: .normal)
+        } else {
+            addClearButton.setTitle("Add Item", for: .normal)
+        }
     }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         addItem(nil)
@@ -63,12 +78,21 @@ class GroceryListTableViewController: UITableViewController, ItemTableViewCellDe
     }
     //MARK: - ItemTableViewCellDelegate Methods
     func toggleCheck(for item: GroceryItem) {
+        if inputTextField.isFirstResponder == true{
+            inputTextField.resignFirstResponder()
+        }
         groceryItemController.checkOffItem(item: item)
         tableView.reloadData()
     }
+    
+    //MARK: - Private Method
+    @objc func dismissKeyboard (_ sender: UITapGestureRecognizer) {
+        inputTextField.resignFirstResponder()
+    }
 
     //MARK: - Properties
+    private var hasCheckedItems = false
     @IBOutlet weak var addClearButton: UIButton!
     @IBOutlet weak var inputTextField: UITextField!
-    let groceryItemController = GroceryItemController.shared
+    private let groceryItemController = GroceryItemController.shared
 }

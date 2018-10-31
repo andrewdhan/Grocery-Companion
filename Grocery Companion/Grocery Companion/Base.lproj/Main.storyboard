@@ -26,24 +26,31 @@
                                     <rect key="frame" x="16" y="5" width="343" height="34"/>
                                     <subviews>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ag9-bE-S86">
-                                            <rect key="frame" x="0.0" y="0.0" width="289" height="34"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="250" height="34"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
-                                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="256" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7QN-bR-A1J">
-                                            <rect key="frame" x="297" y="0.0" width="46" height="34"/>
-                                            <state key="normal" title="Button"/>
-                                            <connections>
-                                                <action selector="addItem:" destination="Sw8-To-EDq" eventType="touchUpInside" id="cdF-WL-c9w"/>
-                                            </connections>
-                                        </button>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="YNb-U4-QQU">
+                                            <rect key="frame" x="258" y="0.0" width="85" height="34"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="256" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="7QN-bR-A1J">
+                                                    <rect key="frame" x="0.0" y="0.0" width="85" height="34"/>
+                                                    <state key="normal" title="Clear Checked"/>
+                                                    <connections>
+                                                        <action selector="addItem:" destination="Sw8-To-EDq" eventType="touchUpInside" id="cdF-WL-c9w"/>
+                                                        <action selector="clearCheckedItems:" destination="Sw8-To-EDq" eventType="touchUpInside" id="SMc-iE-SQC"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </stackView>
                                     </subviews>
                                 </stackView>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="ERa-gl-656" secondAttribute="trailing" constant="16" id="9fO-Gm-nl1"/>
+                                <constraint firstItem="ag9-bE-S86" firstAttribute="width" secondItem="yr8-Hl-jqh" secondAttribute="width" multiplier="2/3" id="TE7-yo-F3e"/>
                                 <constraint firstItem="ERa-gl-656" firstAttribute="leading" secondItem="yr8-Hl-jqh" secondAttribute="leading" constant="16" id="Y7w-wN-PY7"/>
                                 <constraint firstItem="ERa-gl-656" firstAttribute="top" secondItem="yr8-Hl-jqh" secondAttribute="top" constant="5" id="aoq-t2-1Dd"/>
                                 <constraint firstAttribute="bottom" secondItem="ERa-gl-656" secondAttribute="bottom" constant="5" id="x1g-sg-ENd"/>
@@ -97,6 +104,7 @@
                     <tabBarItem key="tabBarItem" title="List" selectedImage="list" id="hhH-6T-jX5"/>
                     <navigationItem key="navigationItem" title="Title" id="nUU-Ei-d3J"/>
                     <connections>
+                        <outlet property="addClearButton" destination="7QN-bR-A1J" id="4o1-lD-MJO"/>
                         <outlet property="inputTextField" destination="ag9-bE-S86" id="Cqz-sf-sH6"/>
                     </connections>
                 </tableViewController>

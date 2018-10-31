@@ -24,16 +24,16 @@ class ItemTableViewCell: UITableViewCell {
         let isChecked = groceryItem.isChecked
         
         if isChecked {
-        let attributedText = NSMutableAttributedString(string: groceryItem.name)
-        attributedText.addAttribute(NSAttributedString.Key.strikethroughStyle, value:2, range: NSMakeRange(0, attributedText.length))
+            let attributedText = NSMutableAttributedString(string: groceryItem.name)
+            attributedText.addAttribute(NSAttributedString.Key.strikethroughStyle, value:2, range: NSMakeRange(0, attributedText.length))
             itemLabel.attributedText = attributedText
         } else {
             itemLabel.attributedText = nil
-             itemLabel.text = groceryItem.name
+            itemLabel.text = groceryItem.name
         }
         
         
-       
+        
         let checkedStatus = isChecked ? "checked" : "unchecked"
         checkBox.setImage(UIImage(named:checkedStatus), for: .normal)
     }

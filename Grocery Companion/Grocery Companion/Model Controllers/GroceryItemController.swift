@@ -31,6 +31,14 @@ class GroceryItemController {
         allItems[index].isChecked = !allItems[index].isChecked
     }
     
+    func clearCheckedItems(){
+        for item in allItems {
+            if item.isChecked {
+                item.isChecked = false
+                item.isInGroceryList = false
+            }
+        }
+    }
     
     //MARK: - Private Methods
     private func indexInAllItems(withName name: String) -> Int {

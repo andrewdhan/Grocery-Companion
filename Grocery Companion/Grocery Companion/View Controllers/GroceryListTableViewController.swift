@@ -8,11 +8,12 @@
 
 import UIKit
 
-class GroceryListTableViewController: UITableViewController, ItemTableViewCellDelegate{
+class GroceryListTableViewController: UITableViewController, ItemTableViewCellDelegate, UITextFieldDelegate{
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        inputTextField.delegate = self
 
     }
 
@@ -32,12 +33,34 @@ class GroceryListTableViewController: UITableViewController, ItemTableViewCellDe
     }
   
     // IBAction
-    @IBAction func addItem(_ sender: Any) {
-        guard let text = inputTextField.text, !text.isEmpty else {return}
+    @IBAction func addItem(_ sender: Any?) {
+        guard inputTextField.isFirstResponder == true,
+            let text = inputTextField.text,
+            !text.isEmpty else {return}
+        
         groceryItemController.addItem(withName: text)
+        inputTextField.text = ""
+        inputTextField.resignFirstResponder()
         tableView.reloadData()
     }
     
+    @IBAction func clearCheckedItems(_ sender: Any) {
+        guard inputTextField.isFirstResponder == false else {return}
+        groceryItemController.clearCheckedItems()
+        tableView.reloadData()
+    }
+    //MARK: - UITTextFieldDelegate Methods
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        addClearButton.setTitle("Add Item", for: .normal)
+    }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        addClearButton.setTitle("Clear Checked", for: .normal)
+    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        addItem(nil)
+        inputTextField.becomeFirstResponder()
+        return true
+    }
     //MARK: - ItemTableViewCellDelegate Methods
     func toggleCheck(for item: GroceryItem) {
         groceryItemController.checkOffItem(item: item)
@@ -45,6 +68,7 @@ class GroceryListTableViewController: UITableViewController, ItemTableViewCellDe
     }
 
     //MARK: - Properties
+    @IBOutlet weak var addClearButton: UIButton!
     @IBOutlet weak var inputTextField: UITextField!
     let groceryItemController = GroceryItemController.shared
 }

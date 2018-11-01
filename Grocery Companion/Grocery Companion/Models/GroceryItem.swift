@@ -22,7 +22,16 @@ class GroceryItem: Equatable{
             lhs.lowestPrice == rhs.lowestPrice &&
             lhs.priceHistory == rhs.priceHistory
     }
+    //MARK: - Getter
     
+    func getPriceWithID(transactionID: UUID) -> Price?{
+        for price in priceHistory{
+            if price.transactionID == transactionID{
+                return price
+            }
+        }
+        return nil
+    }
     //MARK: - Properties
     let name: String
     var lowestPrice: Price?{

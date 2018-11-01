@@ -9,18 +9,21 @@
 import UIKit
 import Vision
 
-class ReceiptDetailViewController: UIViewController, CameraPreviewViewControllerDelegate {
+class ReceiptDetailViewController: UIViewController, CameraPreviewViewControllerDelegate, UITableViewDataSource, UITableViewDelegate {
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.delegate = self
+        tableView.dataSource = self
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         transactionID = UUID()
+        transactionController.clearLoadedItems()
     }
     //MARK: - CameraPreviewViewControllerDelegate method
     
@@ -54,7 +57,7 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
         
         transactionController.loadItems(name: newItemName, cost: newItemCost, store: store, date: date, transactionID: transactionID)
         
-        
+        tableView.reloadData()
     }
     
     @IBAction func submitReceipt(_ sender: Any) {
@@ -66,6 +69,18 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
             let transactionID = transactionID else {return}
         
         transactionController.create(store: store, date: date, total: total, identifier: transactionID)
+    }
+    //MARK: - UITableViewDelegate MEthods
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return transactionController.loadedItems.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ReceiptItemCell", for: indexPath) as! ReceiptItemTableViewCell
+        cell.transactionID = transactionID
+        cell.groceryItem = transactionController.loadedItems[indexPath.row]
+        
+        return cell
     }
     //MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

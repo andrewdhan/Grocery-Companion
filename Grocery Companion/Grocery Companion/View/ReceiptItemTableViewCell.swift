@@ -10,15 +10,19 @@ import UIKit
 
 class ReceiptItemTableViewCell: UITableViewCell {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    func updateViews(){
+        guard let groceryItem = groceryItem,
+            let transactionID = transactionID else {return}
+        nameLabel.text = groceryItem.name
+        costLabel.text = groceryItem.getPriceWithID(transactionID: transactionID)?.value.stringValue
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    var groceryItem: GroceryItem? {
+        didSet{
+            updateViews()
+        }
     }
-
+    
+    var transactionID: UUID?
+    @IBOutlet weak var nameLabel: UITextField!
+    @IBOutlet weak var costLabel: UITextField!
 }

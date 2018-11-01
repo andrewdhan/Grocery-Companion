@@ -26,6 +26,7 @@ class TransactionController {
     func create(store: Store, date: Date, total: Double, identifier: UUID){
         let new = Transaction(store: store, date: date, total: total, identifier: identifier, items: loadedItems)
         transactions.append(new)
+        groceryItemController.allItems.append(contentsOf: loadedItems)
         loadedItems = []
     }
     //MARK: - Methods

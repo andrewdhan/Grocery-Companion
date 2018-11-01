@@ -9,24 +9,34 @@
 import UIKit
 import MapKit
 
-class SuggestionsViewController: UIViewController {
-
+class SuggestionsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.delegate = self
+        tableView.dataSource = self
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        suggestions = storeController.bestStoreToBuyItems(groceryItemController.groceryList)
 
-        // Do any additional setup after loading the view.
+        tableView.reloadData()
+    }
+    //MARK: UITableViewDataSource Delegate Methods
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return suggestions.count
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "StoreCell", for: indexPath)
+        cell.textLabel?.text = suggestions[indexPath.row].name
+        return cell
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    
+    //MARK: - Properties
+    let groceryItemController = GroceryItemController.shared
+    let storeController = StoreController.shared
+    var suggestions = [Store]()
+    
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var tableView: UITableView!
     

@@ -22,7 +22,7 @@ class GroceryItem: Equatable{
             lhs.lowestPrice == rhs.lowestPrice &&
             lhs.priceHistory == rhs.priceHistory
     }
-    //MARK: - Getter
+    //MARK: - Helpful Method
     
     func getPriceWithID(transactionID: UUID) -> Price?{
         for price in priceHistory{
@@ -43,6 +43,19 @@ class GroceryItem: Equatable{
         }
         let sortedList = relevantPrices.sorted {$0.value.doubleValue < $1.value.doubleValue}
         return sortedList.first?.store
+    }
+    
+    func cheapestPriceForStore(store: Store, limitResult: Bool = false, monthRange: Int = 1) -> Double?{
+        
+        var prices = priceHistory.filter{$0.store == store}
+        
+        if limitResult{
+            let date = Calendar.current.date(byAdding: .month, value: monthRange, to: Date())!
+            prices = prices.filter{$0.date > date}
+        }
+        
+        return prices.sorted {$0.value.doubleValue < $1.value.doubleValue}.first?.value.doubleValue
+        
     }
     
     //MARK: - Properties

@@ -7,9 +7,19 @@
 //
 
 import Foundation
+import MapKit
 
-struct Store: Equatable, Hashable{
+class Store: NSObject, MKAnnotation{
+    
+    
+    init(name: String, latitude: Double, longitude: Double){
+        self.name = name
+        self.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+    }
+
+    
+    //MARK: - Properties
     let name: String
-    let latitude: Double
-    let longitude: Double
+    var coordinate: CLLocationCoordinate2D
+
 }

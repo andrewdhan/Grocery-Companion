@@ -53,7 +53,7 @@ class GroceryItemController {
     //MARK: - Private Methods
     private func indexInAllItems(withName name: String) -> Int {
         for (index, item) in allItems.enumerated(){
-            if item.name == name{
+            if item.name.lowercased() == name.lowercased(){
                 return index
             }
         }

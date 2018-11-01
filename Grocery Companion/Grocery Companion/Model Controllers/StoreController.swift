@@ -36,9 +36,11 @@ class StoreController{
         return lowPriceTuples.compactMap{ $0.1 == highestFrequency ? $0.0 : nil}
     }
     
-    func estimatedCostForGroceries(store: Store, items: [GroceryItem]) -> Double {
-        //$0 is result, $1 is groceryItem
-        return 0.0
+    func estimatedCostForGroceries(store: Store, items: [GroceryItem]) -> Double? {
+        
+        return items.compactMap{$0.cheapestPriceForStore(store: store)}.reduce(0,+)
+        
+        
     }
     
     //MARK: - Properties

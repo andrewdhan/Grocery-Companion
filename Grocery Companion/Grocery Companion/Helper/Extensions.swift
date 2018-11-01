@@ -31,3 +31,21 @@ extension Dictionary{
         return result
     }
 }
+
+extension Double {
+    func currencyString() -> String?{
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        
+        return formatter.string(from: self.toNSNumber())
+    }
+}
+
+extension NSNumber{
+    func currencyString() -> String?{
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        
+        return formatter.string(from: self)
+    }
+}

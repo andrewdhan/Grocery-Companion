@@ -14,7 +14,7 @@ class ReceiptItemTableViewCell: UITableViewCell {
         guard let groceryItem = groceryItem,
             let transactionID = transactionID else {return}
         nameLabel.text = groceryItem.name
-        costLabel.text = groceryItem.getPriceWithID(transactionID: transactionID)?.value.stringValue
+        costLabel.text = groceryItem.getPriceWithID(transactionID: transactionID)?.value.currencyString()
     }
     var groceryItem: GroceryItem? {
         didSet{

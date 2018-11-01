@@ -27,7 +27,9 @@ class SuggestionsViewController: UIViewController, UITableViewDelegate, UITableV
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "StoreCell", for: indexPath)
-        cell.textLabel?.text = suggestions[indexPath.row].name
+        let store = suggestions[indexPath.row]
+        cell.textLabel?.text = store.name
+        cell.detailTextLabel?.text = storeController.estimatedCostForGroceries(store: store, items: groceryItemController.groceryList)?.currencyString() ?? "N/A"
         return cell
     }
     

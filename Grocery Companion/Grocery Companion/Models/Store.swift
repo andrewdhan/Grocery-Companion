@@ -21,5 +21,9 @@ class Store: NSObject, MKAnnotation{
     //MARK: - Properties
     let name: String
     var coordinate: CLLocationCoordinate2D
+    
+    var title: String?{
+        return name
+    }
 
 }

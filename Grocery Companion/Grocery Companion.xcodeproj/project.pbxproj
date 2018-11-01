@@ -11,6 +11,7 @@
 		1003842D218AC963002E5496 /* TransactionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1003842C218AC963002E5496 /* TransactionController.swift */; };
 		1003842F218ADC58002E5496 /* StoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1003842E218ADC58002E5496 /* StoreController.swift */; };
 		10038431218B5D46002E5496 /* SuggestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10038430218B5D46002E5496 /* SuggestionsViewController.swift */; };
+		10038433218BA366002E5496 /* StoreDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10038432218BA366002E5496 /* StoreDetailView.swift */; };
 		101B06C4218A162100275B94 /* ReceiptDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101B06C3218A162000275B94 /* ReceiptDetailViewController.swift */; };
 		108D95CD2188C19400D1B04D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108D95CC2188C19400D1B04D /* AppDelegate.swift */; };
 		108D95D22188C19400D1B04D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 108D95D02188C19400D1B04D /* Main.storyboard */; };
@@ -33,6 +34,7 @@
 		1003842C218AC963002E5496 /* TransactionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionController.swift; sourceTree = "<group>"; };
 		1003842E218ADC58002E5496 /* StoreController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreController.swift; sourceTree = "<group>"; };
 		10038430218B5D46002E5496 /* SuggestionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionsViewController.swift; sourceTree = "<group>"; };
+		10038432218BA366002E5496 /* StoreDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreDetailView.swift; sourceTree = "<group>"; };
 		101B06C3218A162000275B94 /* ReceiptDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptDetailViewController.swift; sourceTree = "<group>"; };
 		108D95C92188C19400D1B04D /* Grocery Companion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Grocery Companion.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		108D95CC2188C19400D1B04D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				108D95E22188D56500D1B04D /* ItemTableViewCell.swift */,
+				10038432218BA366002E5496 /* StoreDetailView.swift */,
 				108D95F621896B0300D1B04D /* PreviewView.swift */,
 				10038428218AC5F3002E5496 /* ReceiptItemTableViewCell.swift */,
 			);
@@ -241,6 +244,7 @@
 				108D95E02188C2C600D1B04D /* GroceryListTableViewController.swift in Sources */,
 				101B06C4218A162100275B94 /* ReceiptDetailViewController.swift in Sources */,
 				108D95F42188FE5900D1B04D /* GroceryItemController.swift in Sources */,
+				10038433218BA366002E5496 /* StoreDetailView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

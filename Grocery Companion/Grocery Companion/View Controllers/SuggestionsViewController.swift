@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class SuggestionsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class SuggestionsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MKMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
@@ -18,10 +18,13 @@ class SuggestionsViewController: UIViewController, UITableViewDelegate, UITableV
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         suggestions = storeController.bestStoreToBuyItems(groceryItemController.groceryList)
-
         tableView.reloadData()
+        
+        mapView.delegate = self
+        mapView.register(MKMarkerAnnotationView.self, forAnnotationViewWithReuseIdentifier: "StoreAnnotation")
+        mapView.addAnnotations(suggestions)
     }
-    //MARK: UITableViewDataSource Delegate Methods
+    //MARK: UITableViewDataSource Methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return suggestions.count
     }
@@ -32,7 +35,21 @@ class SuggestionsViewController: UIViewController, UITableViewDelegate, UITableV
         cell.detailTextLabel?.text = storeController.estimatedCostForGroceries(store: store, items: groceryItemController.groceryList)?.currencyString() ?? "N/A"
         return cell
     }
-    
+    //MARK: MapViewDelegate Method
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        let storeAnnotation = mapView.dequeueReusableAnnotationView(withIdentifier: "StoreAnnotation", for: annotation) as! MKMarkerAnnotationView
+        storeAnnotation.markerTintColor = .darkGray
+        storeAnnotation.glyphTintColor = .white
+        
+        storeAnnotation.canShowCallout = true
+        
+        let detailView = StoreDetailView(frame: .zero)
+        detailView.store = annotation as? Store
+        print(detailView.store)
+        
+        storeAnnotation.detailCalloutAccessoryView = detailView
+        return storeAnnotation
+    }
     
     //MARK: - Properties
     let groceryItemController = GroceryItemController.shared

@@ -117,7 +117,7 @@
         <!--Suggestions-->
         <scene sceneID="rGb-cd-eCR">
             <objects>
-                <viewController id="uWK-ou-OyR" sceneMemberID="viewController">
+                <viewController id="uWK-ou-OyR" customClass="SuggestionsViewController" customModule="Grocery_Companion" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fLo-8Y-oIp">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -172,6 +172,10 @@
                         <viewLayoutGuide key="safeArea" id="BOp-tz-QQj"/>
                     </view>
                     <navigationItem key="navigationItem" title="Suggestions" id="Hxn-hb-Lur"/>
+                    <connections>
+                        <outlet property="mapView" destination="FgK-Ar-I5V" id="ppc-oC-QdF"/>
+                        <outlet property="tableView" destination="XHG-zc-GqJ" id="MT4-r7-owt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dtg-Jt-PN0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -486,7 +490,7 @@
         <scene sceneID="Cjc-e0-Fu1">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="2bD-RM-Ea0" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="List" selectedImage="list" id="hhH-6T-jX5"/>
+                    <tabBarItem key="tabBarItem" title="List" image="list" id="hhH-6T-jX5"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="BB0-7Z-bWV">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -505,7 +509,7 @@
         <scene sceneID="wJn-Tk-KVz">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hsE-ct-iPH" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Scan" selectedImage="receipt" id="KhH-TZ-URq"/>
+                    <tabBarItem key="tabBarItem" title="Scan" image="receipt" id="KhH-TZ-URq"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Lzu-5O-bYd">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -524,7 +528,7 @@
         <scene sceneID="nED-Ph-AU6">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="aKq-D5-eRX" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Suggestion" selectedImage="map" id="5mG-Eh-0gT"/>
+                    <tabBarItem key="tabBarItem" title="Suggestion" image="map" id="5mG-Eh-0gT"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Wi7-Dy-P5S">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>

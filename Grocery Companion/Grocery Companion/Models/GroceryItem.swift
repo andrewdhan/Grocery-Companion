@@ -32,6 +32,19 @@ class GroceryItem: Equatable{
         }
         return nil
     }
+    func cheapestPlaceToBuy() -> Store?{
+        let relevantPrices: [Price]
+        if priceHistory.count < 3 {
+            relevantPrices = priceHistory
+        } else {
+            let monthAgo = Calendar.current.date(byAdding: .month, value: -1, to: Date())!
+             relevantPrices = priceHistory.compactMap{ $0.date > monthAgo ?  $0 : nil
+            }
+        }
+        let sortedList = relevantPrices.sorted {$0.value.doubleValue < $1.value.doubleValue}
+        return sortedList.first?.store
+    }
+    
     //MARK: - Properties
     let name: String
     var lowestPrice: Price?{

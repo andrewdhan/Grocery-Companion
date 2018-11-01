@@ -45,7 +45,10 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
     
     @IBAction func addItem(_ sender: Any) {
         //TODO: change for auto population of nearby stores
-        self.store = StoreController.stores[0]
+        guard let storeText = storeTextField.text?.lowercased() else {return}
+        self.store = storeText.contains("trader")
+            ? StoreController.stores[StoreName.traderJoes.rawValue]
+            : StoreController.stores[StoreName.wholeFoods.rawValue]
         
         guard let store = self.store,
             let dateString = dateTextField.text,

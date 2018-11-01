@@ -21,3 +21,13 @@ extension String{
         return dateFormatter.date(from: self)
     }
 }
+
+extension Dictionary{
+    func convertToTupleArray() -> [(Key, Value)]{
+        var result = [(Key,Value)]()
+        for (key, value) in self {
+            result.append((key,value))
+        }
+        return result
+    }
+}

@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import MapKit
 //temporary enum before incorporating Yelp API
 
 enum StoreName: Int{
@@ -42,6 +42,16 @@ class StoreController{
         
         
     }
+    
+    func averageStoreCoordinate() ->CLLocationCoordinate2D?{
+        let stores = StoreController.stores
+        guard !stores.isEmpty else {return nil}
+        let avgLatitude =  stores.reduce(0) {$0 + $1.coordinate.latitude}/Double(stores.count)
+        let avgLongitude = stores.reduce(0) {$0 + $1.coordinate.longitude}/Double(stores.count)
+        return CLLocationCoordinate2D(latitude: avgLatitude, longitude: avgLongitude)
+    }
+    
+    
     
     //MARK: - Properties
     static let stores =

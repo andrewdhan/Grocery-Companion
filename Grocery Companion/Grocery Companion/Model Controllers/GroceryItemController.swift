@@ -50,6 +50,7 @@ class GroceryItemController {
             return allItems[index]
         }
     }
+    
     //MARK: - Private Methods
     private func indexInAllItems(withName name: String) -> Int {
         for (index, item) in allItems.enumerated(){

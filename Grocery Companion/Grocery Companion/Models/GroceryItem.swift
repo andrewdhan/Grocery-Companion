@@ -10,10 +10,10 @@ import Foundation
 
 class GroceryItem: Equatable{
     
-    init(name: String, lowestPrice: Price? = nil, priceHistory: [Price] = [Price]()) {
+    init(name: String, lowestPrice: Price? = nil, inGroceryList: Bool, priceHistory: [Price] = [Price]()) {
         self.name = name
         self.priceHistory = priceHistory
-        self.isInGroceryList = true
+        self.isInGroceryList = inGroceryList
         self.isChecked = false
     }
     

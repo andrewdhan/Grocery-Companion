@@ -16,26 +16,33 @@ class TransactionController {
     func loadItems(name: String, cost: Double, store: Store, date: Date, transactionID: UUID){
         let price = Price(value: cost.toNSNumber(), store: store, date: date, transactionID: transactionID)
         
-        let item = groceryItemController.getItemWithName(name) ?? GroceryItem(name: name)
+        var item = groceryItemController.getItemWithName(name)
         
-        item.priceHistory.append(price)
+        if item == nil {
+            item = GroceryItem(name: name, inGroceryList: false)
+            newItems.append(item!)
+        }
         
-        loadedItems.append(item)
+        item!.priceHistory.append(price)
+        
+        loadedItems.append(item!)
  
     }
     func create(store: Store, date: Date, total: Double, identifier: UUID){
         let new = Transaction(store: store, date: date, total: total, identifier: identifier, items: loadedItems)
         transactions.append(new)
-        groceryItemController.allItems.append(contentsOf: loadedItems)
-        loadedItems = []
+        groceryItemController.allItems.append(contentsOf: newItems)
+        clearLoadedItems()
     }
     //MARK: - Methods
     func clearLoadedItems(){
         loadedItems = []
+        newItems = []
     }
     
     //MARK: - Properties
     private let groceryItemController = GroceryItemController.shared
+    private var newItems = [GroceryItem]()
     var loadedItems = [GroceryItem]()
     var transactions = [Transaction]()
 }

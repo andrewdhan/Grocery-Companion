@@ -22,7 +22,7 @@ class GroceryItemController {
         if index >= 0 {
             allItems[index].isInGroceryList = true
         } else {
-            let newItem = GroceryItem(name: name)
+            let newItem = GroceryItem(name: name, inGroceryList: true)
             allItems.append(newItem)
         }
     }

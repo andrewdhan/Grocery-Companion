@@ -77,6 +77,7 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
         let alertController = UIAlertController(title: "Success", message: "Your receipt has been successfully submitted", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default) { (_) in
             self.clearViewText()
+            self.transactionID = UUID()
         }
         
         alertController.addAction(okAction)

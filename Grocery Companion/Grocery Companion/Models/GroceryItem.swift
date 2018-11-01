@@ -12,7 +12,6 @@ class GroceryItem: Equatable{
     
     init(name: String, lowestPrice: Price? = nil, priceHistory: [Price] = [Price]()) {
         self.name = name
-        self.lowestPrice = lowestPrice
         self.priceHistory = priceHistory
         self.isInGroceryList = true
         self.isChecked = false
@@ -26,8 +25,14 @@ class GroceryItem: Equatable{
     
     //MARK: - Properties
     let name: String
-    let lowestPrice: Price?
-    let priceHistory: [Price]
+    var lowestPrice: Price?{
+        if priceHistory.isEmpty{
+            return nil
+        } else {
+            return priceHistory.sorted{$0.value.doubleValue < $1.value.doubleValue}.first!
+        }
+    }
+    var priceHistory: [Price]
     var isChecked: Bool
     var isInGroceryList: Bool
 }

@@ -13,3 +13,11 @@ extension Double{
         return NSNumber(value: self)
     }
 }
+
+extension String{
+    func toDate(withFormat format: DateFormatter.Style) -> Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = format
+        return dateFormatter.date(from: self)
+    }
+}

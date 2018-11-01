@@ -10,6 +10,10 @@ import UIKit
 import CoreImage
 import AVFoundation
 
+protocol CameraPreviewViewControllerDelegate: class {
+    func didFinishProcessingImage(image: CGImage)
+}
+
 class CameraPreviewViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     
     override func viewDidLoad() {
@@ -55,11 +59,15 @@ class CameraPreviewViewController: UIViewController, AVCapturePhotoCaptureDelega
                 NSLog("Error with photoData")
                 return
         }
-        let croppedFrame = CGRect(x: 70, y: 80, width: image.size.width-140, height: image.size.height - 160)
-        let croppedImage = cropImage(image, toRect: croppedFrame, viewWidth: image.size.width-140, viewHeight: image.size.height-160)
-        
-        testView.image = croppedImage!
-        scans.append(image)
+//        let croppedFrame = CGRect(x: 70, y: 80, width: image.size.width-140, height: image.size.height - 160)
+//        let croppedImage = cropImage(image, toRect: croppedFrame, viewWidth: image.size.width-140, viewHeight: image.size.height-160)
+//
+
+//        scans.append(image)
+//
+        let croppedImage = image.cgImage!
+        testView.image = UIImage(cgImage: croppedImage)
+        delegate?.didFinishProcessingImage(image: croppedImage)
         
     }
     //MARK: - Private Methods
@@ -110,6 +118,9 @@ class CameraPreviewViewController: UIViewController, AVCapturePhotoCaptureDelega
     }
     
     //MARK: - Properties
+    weak var delegate: CameraPreviewViewControllerDelegate?
+    
+    
     let captureSession = AVCaptureSession()
     let photoOutput = AVCapturePhotoOutput()
     

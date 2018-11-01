@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		10038429218AC5F3002E5496 /* ReceiptItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10038428218AC5F3002E5496 /* ReceiptItemTableViewCell.swift */; };
+		1003842D218AC963002E5496 /* TransactionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1003842C218AC963002E5496 /* TransactionController.swift */; };
+		1003842F218ADC58002E5496 /* StoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1003842E218ADC58002E5496 /* StoreController.swift */; };
+		101B06C4218A162100275B94 /* ReceiptDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101B06C3218A162000275B94 /* ReceiptDetailViewController.swift */; };
 		108D95CD2188C19400D1B04D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108D95CC2188C19400D1B04D /* AppDelegate.swift */; };
 		108D95D22188C19400D1B04D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 108D95D02188C19400D1B04D /* Main.storyboard */; };
 		108D95D42188C19600D1B04D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 108D95D32188C19600D1B04D /* Assets.xcassets */; };
@@ -24,6 +28,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		10038428218AC5F3002E5496 /* ReceiptItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptItemTableViewCell.swift; sourceTree = "<group>"; };
+		1003842C218AC963002E5496 /* TransactionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionController.swift; sourceTree = "<group>"; };
+		1003842E218ADC58002E5496 /* StoreController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreController.swift; sourceTree = "<group>"; };
+		101B06C3218A162000275B94 /* ReceiptDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptDetailViewController.swift; sourceTree = "<group>"; };
 		108D95C92188C19400D1B04D /* Grocery Companion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Grocery Companion.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		108D95CC2188C19400D1B04D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		108D95D12188C19400D1B04D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -98,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				108D95DF2188C2C600D1B04D /* GroceryListTableViewController.swift */,
+				101B06C3218A162000275B94 /* ReceiptDetailViewController.swift */,
 				108D95F821896BAE00D1B04D /* CameraPreviewViewController.swift */,
 			);
 			path = "View Controllers";
@@ -108,6 +117,7 @@
 			children = (
 				108D95E22188D56500D1B04D /* ItemTableViewCell.swift */,
 				108D95F621896B0300D1B04D /* PreviewView.swift */,
+				10038428218AC5F3002E5496 /* ReceiptItemTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -135,6 +145,8 @@
 			isa = PBXGroup;
 			children = (
 				108D95F32188FE5900D1B04D /* GroceryItemController.swift */,
+				1003842C218AC963002E5496 /* TransactionController.swift */,
+				1003842E218ADC58002E5496 /* StoreController.swift */,
 			);
 			path = "Model Controllers";
 			sourceTree = "<group>";
@@ -214,12 +226,16 @@
 				108D95CD2188C19400D1B04D /* AppDelegate.swift in Sources */,
 				108D95F721896B0300D1B04D /* PreviewView.swift in Sources */,
 				108D95EB2188E7FF00D1B04D /* Store.swift in Sources */,
+				1003842F218ADC58002E5496 /* StoreController.swift in Sources */,
 				108D95E32188D56500D1B04D /* ItemTableViewCell.swift in Sources */,
 				108D95F921896BAE00D1B04D /* CameraPreviewViewController.swift in Sources */,
+				1003842D218AC963002E5496 /* TransactionController.swift in Sources */,
+				10038429218AC5F3002E5496 /* ReceiptItemTableViewCell.swift in Sources */,
 				108D95E62188E6D100D1B04D /* GroceryItem.swift in Sources */,
 				108D95F12188EA2C00D1B04D /* Extensions.swift in Sources */,
 				108D95E92188E78700D1B04D /* Price.swift in Sources */,
 				108D95E02188C2C600D1B04D /* GroceryListTableViewController.swift in Sources */,
+				101B06C4218A162100275B94 /* ReceiptDetailViewController.swift in Sources */,
 				108D95F42188FE5900D1B04D /* GroceryItemController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -10,6 +10,7 @@ import Foundation
 
 class GroceryItemController {
     static let shared = GroceryItemController()
+    
     init() {
         self.allItems = [GroceryItem]()
     }
@@ -39,7 +40,16 @@ class GroceryItemController {
             }
         }
     }
+    //MARK: - Getter Method
     
+    func getItemWithName(_ name: String) -> GroceryItem?{
+        let index = indexInAllItems(withName: name)
+        if index < 0 {
+            return nil
+        } else {
+            return allItems[index]
+        }
+    }
     //MARK: - Private Methods
     private func indexInAllItems(withName name: String) -> Int {
         for (index, item) in allItems.enumerated(){

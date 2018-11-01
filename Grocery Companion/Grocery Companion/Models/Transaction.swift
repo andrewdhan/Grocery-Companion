@@ -9,7 +9,7 @@
 import Foundation
 
 class Transaction{
-    init(store: Store, date: Date, total: Double, identifier: UUID = UUID(), items: [GroceryItem]) {
+    init(store: Store, date: Date, total: Double, identifier: UUID, items: [GroceryItem]) {
         self.store = store
         self.date = date
         self.total = total.toNSNumber()

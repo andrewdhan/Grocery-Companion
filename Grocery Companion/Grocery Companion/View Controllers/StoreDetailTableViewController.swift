@@ -3,7 +3,7 @@
 //  Grocery Companion
 //
 //  Created by Andrew Dhan on 11/1/18.
-//  Copyright © 2018 Andrew Liao. All rights reserved.
+//  Copyright © 2018 Andrew Dhan. All rights reserved.
 //
 
 import UIKit

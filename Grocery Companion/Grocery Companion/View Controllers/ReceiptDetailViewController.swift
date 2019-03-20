@@ -3,7 +3,7 @@
 //  Grocery Companion
 //
 //  Created by Andrew Dhan on 10/31/18.
-//  Copyright © 2018 Andrew Liao. All rights reserved.
+//  Copyright © 2018 Andrew Dhan. All rights reserved.
 //
 
 import UIKit
@@ -83,19 +83,19 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
         alertController.addAction(okAction)
         present(alertController,animated: true, completion: nil)
     }
-
-//MARK: - UITableViewDelegate MEthods
-func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return transactionController.loadedItems.count
-}
-
-func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: "ReceiptItemCell", for: indexPath) as! ReceiptItemTableViewCell
-    cell.transactionID = transactionID
-    cell.groceryItem = transactionController.loadedItems[indexPath.row]
     
-    return cell
-}
+    //MARK: - UITableViewDelegate MEthods
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return transactionController.loadedItems.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ReceiptItemCell", for: indexPath) as! ReceiptItemTableViewCell
+        cell.transactionID = transactionID
+        cell.groceryItem = transactionController.loadedItems[indexPath.row]
+        
+        return cell
+    }
     
     //MARK: - Private Methods
     func clearViewText(){
@@ -107,27 +107,27 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
         transactionController.clearLoadedItems()
         tableView.reloadData()
     }
-//MARK: - Navigation
-override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    if segue.identifier == "ScanReceipt" {
-        let destinationVC = segue.destination as! CameraPreviewViewController
-        destinationVC.delegate = self
+    //MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ScanReceipt" {
+            let destinationVC = segue.destination as! CameraPreviewViewController
+            destinationVC.delegate = self
+        }
     }
-}
-
-//MARK: - Properties
-private var store: Store?
-private var transactionID: UUID?
-
-private let transactionController = TransactionController.shared
-private let groceryItemController = GroceryItemController.shared
-
-@IBOutlet weak var addItemNameField: UITextField!
-@IBOutlet weak var addItemCostField: UITextField!
-
-@IBOutlet weak var totalTextField: UITextField!
-@IBOutlet weak var storeTextField: UITextField!
-@IBOutlet weak var dateTextField: UITextField!
-@IBOutlet weak var tableView: UITableView!
-
+    
+    //MARK: - Properties
+    private var store: Store?
+    private var transactionID: UUID?
+    
+    private let transactionController = TransactionController.shared
+    private let groceryItemController = GroceryItemController.shared
+    
+    @IBOutlet weak var addItemNameField: UITextField!
+    @IBOutlet weak var addItemCostField: UITextField!
+    
+    @IBOutlet weak var totalTextField: UITextField!
+    @IBOutlet weak var storeTextField: UITextField!
+    @IBOutlet weak var dateTextField: UITextField!
+    @IBOutlet weak var tableView: UITableView!
+    
 }

@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  Extensions.swift
 //  Grocery Companion
 //
 //  Created by Andrew Dhan on 10/30/18.

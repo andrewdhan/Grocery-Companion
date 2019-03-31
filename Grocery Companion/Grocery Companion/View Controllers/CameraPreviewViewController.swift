@@ -54,27 +54,39 @@ class CameraPreviewViewController: UIViewController, AVCapturePhotoCaptureDelega
     }
     //MARK: - AVCapturePhotoCaptureDelegate Methods
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
-        guard let photoData = photo.fileDataRepresentation(),
-            let image = UIImage(data: photoData) else {
-                NSLog("Error with photoData")
+        if let error = error {
+            NSLog("Error with photo capture:\(error)")
+            return
+            
+        }
+        guard let imageData = photo.fileDataRepresentation(),
+            let uiImage = UIImage(data: imageData),
+            let cgImage = uiImage.cgImage else {
+                NSLog("Error with photo")
                 return
         }
-//        let croppedFrame = CGRect(x: 70, y: 80, width: image.size.width-140, height: image.size.height - 160)
-//        let croppedImage = cropImage(image, toRect: croppedFrame, viewWidth: image.size.width-140, viewHeight: image.size.height-160)
-//
+        
+        let cropRect = CGRect(origin: .zero, size: CGSize(width: view.frame.width-140, height: view.frame.width-160))
 
-//        scans.append(image)
-//
-        let croppedImage = image.cgImage!
+        guard let croppedImage = cropImage(cgImage, toRect: cropRect, viewWidth: view.frame.width, viewHeight: view.frame.height) else {
+            NSLog("Error cropping image")
+            return
+        }
+        
         testView.image = UIImage(cgImage: croppedImage)
-        delegate?.didFinishProcessingImage(image: croppedImage)
+//        delegate?.didFinishProcessingImage(image: croppedImage)
         
     }
     //MARK: - Private Methods
-    func cropImage(_ inputImage: UIImage, toRect cropRect: CGRect, viewWidth: CGFloat, viewHeight: CGFloat) -> UIImage?
+    private func cropImage(cgImage: CGImage)->CGImage?{
+        
+        
+        return nil
+    }
+    private func cropImage(_ inputImage: CGImage, toRect cropRect: CGRect, viewWidth: CGFloat, viewHeight: CGFloat) -> CGImage?
     {
-        let imageViewScale = max(inputImage.size.width / viewWidth,
-                                 inputImage.size.height / viewHeight)
+        let imageViewScale = max(CGFloat(inputImage.width) / viewWidth,
+                                 CGFloat(inputImage.height) / viewHeight)
         
         // Scale cropRect to handle images larger than shown-on-screen size
         let cropZone = CGRect(x:cropRect.origin.x * imageViewScale,
@@ -83,14 +95,12 @@ class CameraPreviewViewController: UIViewController, AVCapturePhotoCaptureDelega
                               height:cropRect.size.height * imageViewScale)
         
         // Perform cropping in Core Graphics
-        guard let cutImageRef: CGImage = inputImage.cgImage?.cropping(to:cropZone)
+        guard let cutImageRef: CGImage = inputImage.cropping(to:cropZone)
             else {
                 return nil
         }
         
-        // Return image to UIImage
-        let croppedImage: UIImage = UIImage(cgImage: cutImageRef)
-        return croppedImage
+        return cutImageRef
     }
     
     

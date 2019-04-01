@@ -105,6 +105,9 @@ class CameraPreviewViewController: UIViewController, AVCapturePhotoCaptureDelega
     
     @objc func tapScreen(_ sender: Any?) {
         let photoSetting = AVCapturePhotoSettings()
+        if let photoOutputConnection = self.photoOutput.connection(with: .video) {
+            photoOutputConnection.videoOrientation = .portrait
+        }
         self.photoOutput.capturePhoto(with: photoSetting, delegate: self)
     }
     

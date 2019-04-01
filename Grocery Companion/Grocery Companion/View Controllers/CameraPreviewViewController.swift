@@ -60,33 +60,32 @@ class CameraPreviewViewController: UIViewController, AVCapturePhotoCaptureDelega
             
         }
         guard let imageData = photo.fileDataRepresentation(),
-            let uiImage = UIImage(data: imageData),
-            let cgImage = uiImage.cgImage else {
+            let uiImage = UIImage(data: imageData) else{
                 NSLog("Error with photo")
                 return
         }
         
-        let cropRect = CGRect(origin: .zero, size: CGSize(width: view.frame.width-140, height: view.frame.width-160))
+        let cropRect = CGRect(origin: .zero, size: CGSize(width: view.frame.width-140, height: view.frame.height-160))
 
-        guard let croppedImage = cropImage(cgImage, toRect: cropRect, viewWidth: view.frame.width, viewHeight: view.frame.height) else {
+        guard let croppedImage = cropImage(uiImage, toRect: cropRect, viewWidth: view.frame.width, viewHeight: view.frame.height) else {
             NSLog("Error cropping image")
             return
         }
         
-        testView.image = UIImage(cgImage: croppedImage)
+        testView.image = croppedImage
 //        delegate?.didFinishProcessingImage(image: croppedImage)
         
     }
     //MARK: - Private Methods
-    private func cropImage(cgImage: CGImage)->CGImage?{
+    private func cropImage(cgImage: CGImage)->UIImage?{
         
         
         return nil
     }
-    private func cropImage(_ inputImage: CGImage, toRect cropRect: CGRect, viewWidth: CGFloat, viewHeight: CGFloat) -> CGImage?
+    private func cropImage(_ inputImage: UIImage, toRect cropRect: CGRect, viewWidth: CGFloat, viewHeight: CGFloat) -> UIImage?
     {
-        let imageViewScale = max(CGFloat(inputImage.width) / viewWidth,
-                                 CGFloat(inputImage.height) / viewHeight)
+        let imageViewScale = max(CGFloat(inputImage.size.width) / viewWidth,
+                                 CGFloat(inputImage.size.height) / viewHeight)
         
         // Scale cropRect to handle images larger than shown-on-screen size
         let cropZone = CGRect(x:cropRect.origin.x * imageViewScale,
@@ -95,12 +94,12 @@ class CameraPreviewViewController: UIViewController, AVCapturePhotoCaptureDelega
                               height:cropRect.size.height * imageViewScale)
         
         // Perform cropping in Core Graphics
-        guard let cutImageRef: CGImage = inputImage.cropping(to:cropZone)
+        guard let cutImageRef: CGImage = inputImage.cgImage?.cropping(to:cropZone)
             else {
                 return nil
         }
         
-        return cutImageRef
+        return UIImage(cgImage: cutImageRef, scale: inputImage.scale, orientation: inputImage.imageOrientation)
     }
     
     

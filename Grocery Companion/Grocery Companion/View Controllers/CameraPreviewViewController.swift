@@ -65,7 +65,9 @@ class CameraPreviewViewController: UIViewController, AVCapturePhotoCaptureDelega
                 return
         }
         
-        let cropRect = CGRect(origin: .zero, size: CGSize(width: view.frame.width-140, height: view.frame.height-160))
+        let cropHeight = view.frame.height-160
+        let cropWidth = view.frame.width-140
+        let cropRect = CGRect(origin: .zero, size: CGSize(width: cropHeight , height: cropWidth))
 
         guard let croppedImage = cropImage(uiImage, toRect: cropRect, viewWidth: view.frame.width, viewHeight: view.frame.height) else {
             NSLog("Error cropping image")

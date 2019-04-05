@@ -11,7 +11,7 @@ import CoreImage
 import AVFoundation
 
 protocol CameraPreviewViewControllerDelegate: class {
-    func didFinishProcessingImage(image: CGImage)
+    func didFinishProcessingImage(image: UIImage)
 }
 
 class CameraPreviewViewController: UIViewController, AVCapturePhotoCaptureDelegate {
@@ -77,7 +77,7 @@ class CameraPreviewViewController: UIViewController, AVCapturePhotoCaptureDelega
         }
         
         testView.image = croppedImage
-//        delegate?.didFinishProcessingImage(image: croppedImage)
+        delegate?.didFinishProcessingImage(image: croppedImage)
         
     }
     //MARK: - Private Methods

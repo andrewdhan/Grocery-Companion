@@ -27,18 +27,22 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
     }
     //MARK: - CameraPreviewViewControllerDelegate method
     
-    func didFinishProcessingImage(image: CGImage) {
-        //
-        //        let requestHandler = image.width > image.height
-        //            ? VNImageRequestHandler(cgImage: image, orientation: .right, options: [:])
-        //            : VNImageRequestHandler(cgImage: image, options: [:])
-        //
-        //        let request = VNDetectTextRectanglesRequest { [weak self](request, error) in
-        //            DispatchQueue.main.async {
-        //                <#code#>
-        //            }
-        //        }
-        //
+    func didFinishProcessingImage(image: UIImage) {
+        let cgImage = image.cgImage!
+        let orientation = CGImagePropertyOrientation(image.imageOrientation)
+        
+        let imageRequestHandler = VNImageRequestHandler(cgImage: cgImage, orientation: orientation, options: [:])
+        
+        let request = VNDetectTextRectanglesRequest(completionHandler: handleRectangles(request:error:))
+        
+        DispatchQueue.global(qos: .userInitiated).async {
+            do {
+                try imageRequestHandler.perform([request])
+            } catch let error as NSError {
+                print("Failed to perform image request: \(error)")
+                return
+            }
+        }
         
     }
     //MARK: - IBActions
@@ -83,7 +87,9 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
         alertController.addAction(okAction)
         present(alertController,animated: true, completion: nil)
     }
-    
+    private func handleRectangles(request: VNRequest, error: Error?){
+        
+    }
     //MARK: - UITableViewDelegate MEthods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return transactionController.loadedItems.count
@@ -114,6 +120,8 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
             destinationVC.delegate = self
         }
     }
+    
+    
     
     //MARK: - Properties
     private var store: Store?

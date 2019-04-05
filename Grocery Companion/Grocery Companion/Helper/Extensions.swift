@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Vision
 
 extension Double{
     func toNSNumber() -> NSNumber{

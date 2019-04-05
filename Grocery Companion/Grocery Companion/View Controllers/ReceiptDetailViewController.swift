@@ -88,7 +88,20 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
         present(alertController,animated: true, completion: nil)
     }
     private func handleRectangles(request: VNRequest, error: Error?){
+        if let error = error {
+            NSLog("Error handling request: \(error)")
+            return
+        }
         
+        guard let results = request.results as? [VNTextObservation] else {
+            return
+        }
+        
+        print(results.count)
+    }
+    
+    private func resultsToText() -> [DetectedText]{
+        return []
     }
     //MARK: - UITableViewDelegate MEthods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

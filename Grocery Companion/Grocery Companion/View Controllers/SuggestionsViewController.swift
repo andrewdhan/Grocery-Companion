@@ -9,7 +9,6 @@
 import UIKit
 import MapKit
 
-
 class SuggestionsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MKMapViewDelegate, CLLocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()

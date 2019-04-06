@@ -87,6 +87,8 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
         alertController.addAction(okAction)
         present(alertController,animated: true, completion: nil)
     }
+    
+    //processes VNTextObservation and run OCR on it
     private func handleRectangles(request: VNRequest, error: Error?){
         if let error = error {
             NSLog("Error handling request: \(error)")

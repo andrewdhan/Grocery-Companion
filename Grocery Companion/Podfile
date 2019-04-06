@@ -7,4 +7,5 @@ target 'Grocery Companion' do
 
   # Pods for Grocery Companion
   pod 'SwiftOCR'
+  pod 'TesseractOCRiOS'
 end

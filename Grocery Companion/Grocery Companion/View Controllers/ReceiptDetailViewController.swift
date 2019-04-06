@@ -8,6 +8,7 @@
 
 import UIKit
 import Vision
+import SwiftOCR
 
 class ReceiptDetailViewController: UIViewController, CameraPreviewViewControllerDelegate, UITableViewDataSource, UITableViewDelegate {
     
@@ -24,6 +25,16 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
         super.viewWillAppear(animated)
         transactionID = UUID()
         transactionController.clearLoadedItems()
+        
+        //TEST
+        let testImages = [UIImage(named: "test-oranges" )!,UIImage(named: "test-produce")!, UIImage(named: "test-safeway")!]
+        for image in testImages{
+            swiftOCR.recognize(image) { recognizedString in
+                print(recognizedString)
+            }
+
+        }
+        
     }
     //MARK: - CameraPreviewViewControllerDelegate method
     
@@ -139,6 +150,7 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
     
     
     //MARK: - Properties
+    private let swiftOCR = SwiftOCR()
     private var store: Store?
     private var transactionID: UUID?
     

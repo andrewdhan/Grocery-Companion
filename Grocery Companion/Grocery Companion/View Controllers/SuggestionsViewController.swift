@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 
+
 class SuggestionsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MKMapViewDelegate, CLLocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +23,7 @@ class SuggestionsViewController: UIViewController, UITableViewDelegate, UITableV
         locationManager.requestWhenInUseAuthorization()
 //        locationManager.requestLocation()
         guard let avgCoordinate =  storeController.averageStoreCoordinate() else {return}
-        let viewRegion = MKCoordinateRegionMakeWithDistance(avgCoordinate, 2000, 2000)
+        let viewRegion = MKCoordinateRegion(center: avgCoordinate, latitudinalMeters: 2000, longitudinalMeters: 2000)
         mapView.setRegion(viewRegion, animated: false)
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -78,7 +79,7 @@ class SuggestionsViewController: UIViewController, UITableViewDelegate, UITableV
     func updateMapRegion(){
         //Zoom to user location
         guard let location = location else {return}
-        let viewRegion = MKCoordinateRegionMakeWithDistance(location, 2000, 2000)
+        let viewRegion = MKCoordinateRegion(center: location, latitudinalMeters: 2000, longitudinalMeters: 2000)
         mapView.setRegion(viewRegion, animated: true)
         
     }

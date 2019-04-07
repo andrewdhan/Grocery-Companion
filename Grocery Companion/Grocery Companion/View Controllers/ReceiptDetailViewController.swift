@@ -125,11 +125,19 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
         var request = URLRequest(url: authenticatedBaseURL)
         request.httpMethod = "POST"
         
+        //although request.httpBody is optional, we want to make sure that the method did work
+        guard let httpBody = buildHTTPBody(image: image) else {
+            NSLog("buildHTTPBody failed")
+            return
+        }
+        request.httpBody = httpBody
         URLSession.shared.dataTask(with: request) { (data, _, error) in
             if let error = error {
                 NSLog("Error with request:\(error)")
                 return
             }
+            
+            print(data)
         }
     }
     

@@ -28,6 +28,7 @@
 		108D95F42188FE5900D1B04D /* GroceryItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108D95F32188FE5900D1B04D /* GroceryItemController.swift */; };
 		108D95F721896B0300D1B04D /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108D95F621896B0300D1B04D /* PreviewView.swift */; };
 		108D95F921896BAE00D1B04D /* CameraPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108D95F821896BAE00D1B04D /* CameraPreviewViewController.swift */; };
+		109D93EB225AA491006A6AF4 /* AnnotatedImageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109D93EA225AA491006A6AF4 /* AnnotatedImageRequest.swift */; };
 		10B7FDD02257D42B002AE242 /* DetectedText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B7FDCF2257D42B002AE242 /* DetectedText.swift */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +56,7 @@
 		108D95F32188FE5900D1B04D /* GroceryItemController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryItemController.swift; sourceTree = "<group>"; };
 		108D95F621896B0300D1B04D /* PreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
 		108D95F821896BAE00D1B04D /* CameraPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreviewViewController.swift; sourceTree = "<group>"; };
+		109D93EA225AA491006A6AF4 /* AnnotatedImageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotatedImageRequest.swift; sourceTree = "<group>"; };
 		10B7FDCF2257D42B002AE242 /* DetectedText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectedText.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -141,6 +143,7 @@
 				108D95E82188E78700D1B04D /* Price.swift */,
 				108D95EA2188E7FF00D1B04D /* Store.swift */,
 				108D95EE2188E87D00D1B04D /* Transaction.swift */,
+				109D93EA225AA491006A6AF4 /* AnnotatedImageRequest.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -238,6 +241,7 @@
 				108D95CD2188C19400D1B04D /* AppDelegate.swift in Sources */,
 				108D95F721896B0300D1B04D /* PreviewView.swift in Sources */,
 				108D95EB2188E7FF00D1B04D /* Store.swift in Sources */,
+				109D93EB225AA491006A6AF4 /* AnnotatedImageRequest.swift in Sources */,
 				10038431218B5D46002E5496 /* SuggestionsViewController.swift in Sources */,
 				1003842F218ADC58002E5496 /* StoreController.swift in Sources */,
 				108D95E32188D56500D1B04D /* ItemTableViewCell.swift in Sources */,

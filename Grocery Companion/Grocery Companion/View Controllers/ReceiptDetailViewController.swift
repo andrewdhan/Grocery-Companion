@@ -9,6 +9,8 @@
 import UIKit
 import Vision
 
+private let authenticatedBaseURL = URL(string: "https://vision.googleapis.com/v1/images:annotate?key=AIzaSyAn5-MDpgVw8hVhITUW5EwrjlRXQ3Na768")!
+
 class ReceiptDetailViewController: UIViewController, CameraPreviewViewControllerDelegate, UITableViewDataSource, UITableViewDelegate {
     
     
@@ -28,21 +30,21 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
     //MARK: - CameraPreviewViewControllerDelegate method
     
     func didFinishProcessingImage(image: UIImage) {
-        let cgImage = image.cgImage!
-        let orientation = CGImagePropertyOrientation(image.imageOrientation)
-        
-        let imageRequestHandler = VNImageRequestHandler(cgImage: cgImage, orientation: orientation, options: [:])
-        
-        let request = VNDetectTextRectanglesRequest(completionHandler: handleRectangles(request:error:))
-        
-        DispatchQueue.global(qos: .userInitiated).async {
-            do {
-                try imageRequestHandler.perform([request])
-            } catch let error as NSError {
-                print("Failed to perform image request: \(error)")
-                return
-            }
-        }
+//        let cgImage = image.cgImage!
+//        let orientation = CGImagePropertyOrientation(image.imageOrientation)
+//
+//        let imageRequestHandler = VNImageRequestHandler(cgImage: cgImage, orientation: orientation, options: [:])
+//
+//        let request = VNDetectTextRectanglesRequest(completionHandler: handleRectangles(request:error:))
+//
+//        DispatchQueue.global(qos: .userInitiated).async {
+//            do {
+//                try imageRequestHandler.perform([request])
+//            } catch let error as NSError {
+//                print("Failed to perform image request: \(error)")
+//                return
+//            }
+//        }
         
     }
     //MARK: - IBActions
@@ -116,8 +118,22 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
         return cell
     }
     
+    //MARK: - Networking Functions
+    
+    //Sends image data to Google Cloud Vision API to perform OCR
+    private func sendCloudVisionRequest(image: UIImage, completion:()->Void){
+        var request = URLRequest(url: authenticatedBaseURL)
+        request.httpMethod = "POST"
+        
+        URLSession.shared.dataTask(with: request) { (data, _, error) in
+            if let error = error {
+                NSLog("Error with request:\(error)")
+                return
+            }
+        }
+    }
     //MARK: - Private Methods
-    func clearViewText(){
+    private func clearViewText(){
         totalTextField.text = ""
         storeTextField.text = ""
         dateTextField.text = ""

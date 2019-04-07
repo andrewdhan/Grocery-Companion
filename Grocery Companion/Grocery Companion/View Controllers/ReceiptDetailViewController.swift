@@ -30,21 +30,21 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
     //MARK: - CameraPreviewViewControllerDelegate method
     
     func didFinishProcessingImage(image: UIImage) {
-//        let cgImage = image.cgImage!
-//        let orientation = CGImagePropertyOrientation(image.imageOrientation)
-//
-//        let imageRequestHandler = VNImageRequestHandler(cgImage: cgImage, orientation: orientation, options: [:])
-//
-//        let request = VNDetectTextRectanglesRequest(completionHandler: handleRectangles(request:error:))
-//
-//        DispatchQueue.global(qos: .userInitiated).async {
-//            do {
-//                try imageRequestHandler.perform([request])
-//            } catch let error as NSError {
-//                print("Failed to perform image request: \(error)")
-//                return
-//            }
-//        }
+        //        let cgImage = image.cgImage!
+        //        let orientation = CGImagePropertyOrientation(image.imageOrientation)
+        //
+        //        let imageRequestHandler = VNImageRequestHandler(cgImage: cgImage, orientation: orientation, options: [:])
+        //
+        //        let request = VNDetectTextRectanglesRequest(completionHandler: handleRectangles(request:error:))
+        //
+        //        DispatchQueue.global(qos: .userInitiated).async {
+        //            do {
+        //                try imageRequestHandler.perform([request])
+        //            } catch let error as NSError {
+        //                print("Failed to perform image request: \(error)")
+        //                return
+        //            }
+        //        }
         
     }
     //MARK: - IBActions
@@ -130,6 +130,30 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
                 NSLog("Error with request:\(error)")
                 return
             }
+        }
+    }
+    
+    //Initializes AnnotatedImageRequest from UIImage and build Json for body of http request
+    private func buildHTTPBody(image:UIImage, maxResults:Int? = nil) -> Data?{
+        //convert UIImage to base64encodedstring as required for POST
+        guard let imageData = image.pngData() else {return nil}
+        let imageString = imageData.base64EncodedString()
+        let contentImage = Image(content: imageString)
+        
+        //set feature to OCR option
+        let feature = Feature(type: "DOCUMENT_TEXT_DETECTION", maxResults: maxResults)
+        //create ocrRequest since more than one request can be sent to Cloud Vision
+        let ocrRequest = Request(image: contentImage, features: [feature])
+        
+        //Create AnnotatedImageRequest and encode to json
+        let imageRequest = AnnotatedImageRequest(requests: [ocrRequest])
+        let encoder = JSONEncoder()
+        do{
+            let data = try encoder.encode(imageRequest)
+            return data
+        } catch {
+            NSLog("Error encoding image to json: \(error)")
+            return nil
         }
     }
     //MARK: - Private Methods

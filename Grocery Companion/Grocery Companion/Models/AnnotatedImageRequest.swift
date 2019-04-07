@@ -23,5 +23,5 @@ struct Image: Codable{
 
 struct Feature:Codable{
     var type: String
-    var maxResults: Int
+    var maxResults: Int?
 }

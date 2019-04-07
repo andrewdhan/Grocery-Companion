@@ -26,6 +26,10 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
         super.viewWillAppear(animated)
         transactionID = UUID()
         transactionController.clearLoadedItems()
+        
+        sendCloudVisionRequest(image: UIImage(named: "test-receipt")!) {
+            print("Request reached completion")
+        }
     }
     //MARK: - CameraPreviewViewControllerDelegate method
     
@@ -138,7 +142,7 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
             }
             
             print(data)
-        }
+        }.resume()
     }
     
     //Initializes AnnotatedImageRequest from UIImage and build Json for body of http request

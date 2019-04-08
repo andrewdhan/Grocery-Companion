@@ -9,7 +9,7 @@
 import UIKit
 import Vision
 
-private let authenticatedBaseURL = URL(string: "https://vision.googleapis.com/v1/images:annotate?key=AIzaSyAn5-MDpgVw8hVhITUW5EwrjlRXQ3Na768")!
+private let baseURL = URL(string: "https://vision.googleapis.com/v1/images:annotate")!
 
 class ReceiptDetailViewController: UIViewController, CameraPreviewViewControllerDelegate, UITableViewDataSource, UITableViewDelegate {
     
@@ -126,7 +126,22 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
     
     //Sends image data to Google Cloud Vision API to perform OCR
     private func sendCloudVisionRequest(image: UIImage, completion:()->Void){
-        var request = URLRequest(url: authenticatedBaseURL)
+        
+        //Use URLComponents to add API Key to base URL
+        var urlComponents = URLComponents(url: baseURL, resolvingAgainstBaseURL: false)!
+        
+        let authenticationItem = URLQueryItem(name: "key", value: GoogleAPIKey)
+        
+        urlComponents.queryItems = [authenticationItem]
+        
+        guard let authenticatedURL = urlComponents.url else {
+            NSLog("Trouble building url")
+            return
+            
+        }
+        
+        //Build URL Request
+        var request = URLRequest(url: authenticatedURL)
         request.httpMethod = "POST"
         
         //although request.httpBody is optional, we want to make sure that the method did work

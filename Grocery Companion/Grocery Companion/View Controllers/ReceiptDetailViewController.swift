@@ -141,14 +141,14 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
                 return
             }
             
-            print(data)
+            print(String(data: data!, encoding: String.Encoding.utf8))
         }.resume()
     }
     
     //Initializes AnnotatedImageRequest from UIImage and build Json for body of http request
     private func buildHTTPBody(image:UIImage, maxResults:Int? = nil) -> Data?{
         //convert UIImage to base64encodedstring as required for POST
-        guard let imageData = image.pngData() else {return nil}
+        guard let imageData = image.jpegData(compressionQuality: 0.8) else {return nil}
         let imageString = imageData.base64EncodedString()
         let contentImage = Image(content: imageString)
         

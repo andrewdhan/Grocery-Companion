@@ -9,7 +9,7 @@
 import UIKit
 import Vision
 
-private let baseURL = URL(string: "https://vision.googleapis.com/v1/images:annotate")!
+private var baseURL = URL(string: "https://vision.googleapis.com/v1/images:annotate")!
 
 class ReceiptDetailViewController: UIViewController, CameraPreviewViewControllerDelegate, UITableViewDataSource, UITableViewDelegate {
     
@@ -27,7 +27,7 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
         transactionID = UUID()
         transactionController.clearLoadedItems()
         
-        sendCloudVisionRequest(image: UIImage(named: "test-receipt")!) {
+        sendCloudVisionRequest(image: UIImage(named: "test-safeway")!) {
             print("Request reached completion")
         }
     }
@@ -150,6 +150,9 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
             return
         }
         request.httpBody = httpBody
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue(Bundle.main.bundleIdentifier ?? "", forHTTPHeaderField: "X-Ios-Bundle-Identifier")
+        
         URLSession.shared.dataTask(with: request) { (data, _, error) in
             if let error = error {
                 NSLog("Error with request:\(error)")
@@ -164,11 +167,11 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
     private func buildHTTPBody(image:UIImage, maxResults:Int? = nil) -> Data?{
         //convert UIImage to base64encodedstring as required for POST
         guard let imageData = image.jpegData(compressionQuality: 0.8) else {return nil}
-        let imageString = imageData.base64EncodedString()
+        let imageString = imageData.base64EncodedString(options: .endLineWithCarriageReturn)
         let contentImage = Image(content: imageString)
         
         //set feature to OCR option
-        let feature = Feature(type: "DOCUMENT_TEXT_DETECTION", maxResults: maxResults)
+        let feature = Feature(type: "DOCUMENT_TEXT_DETECTION",maxResults: 200)
         //create ocrRequest since more than one request can be sent to Cloud Vision
         let ocrRequest = Request(image: contentImage, features: [feature])
         

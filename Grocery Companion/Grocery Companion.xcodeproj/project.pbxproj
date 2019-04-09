@@ -14,6 +14,7 @@
 		10038433218BA366002E5496 /* StoreDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10038432218BA366002E5496 /* StoreDetailView.swift */; };
 		10038435218BB314002E5496 /* StoreDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10038434218BB314002E5496 /* StoreDetailTableViewController.swift */; };
 		101B06C4218A162100275B94 /* ReceiptDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101B06C3218A162000275B94 /* ReceiptDetailViewController.swift */; };
+		10559F81225D040C002564A1 /* AnnotatedImageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10559F80225D040C002564A1 /* AnnotatedImageResponse.swift */; };
 		108D95CD2188C19400D1B04D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108D95CC2188C19400D1B04D /* AppDelegate.swift */; };
 		108D95D22188C19400D1B04D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 108D95D02188C19400D1B04D /* Main.storyboard */; };
 		108D95D42188C19600D1B04D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 108D95D32188C19600D1B04D /* Assets.xcassets */; };
@@ -41,6 +42,7 @@
 		10038432218BA366002E5496 /* StoreDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreDetailView.swift; sourceTree = "<group>"; };
 		10038434218BB314002E5496 /* StoreDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreDetailTableViewController.swift; sourceTree = "<group>"; };
 		101B06C3218A162000275B94 /* ReceiptDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptDetailViewController.swift; sourceTree = "<group>"; };
+		10559F80225D040C002564A1 /* AnnotatedImageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotatedImageResponse.swift; sourceTree = "<group>"; };
 		108D95C92188C19400D1B04D /* Grocery Companion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Grocery Companion.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		108D95CC2188C19400D1B04D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		108D95D12188C19400D1B04D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 				108D95EA2188E7FF00D1B04D /* Store.swift */,
 				108D95EE2188E87D00D1B04D /* Transaction.swift */,
 				109D93EA225AA491006A6AF4 /* AnnotatedImageRequest.swift */,
+				10559F80225D040C002564A1 /* AnnotatedImageResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -245,6 +248,7 @@
 				108D95CD2188C19400D1B04D /* AppDelegate.swift in Sources */,
 				108D95F721896B0300D1B04D /* PreviewView.swift in Sources */,
 				108D95EB2188E7FF00D1B04D /* Store.swift in Sources */,
+				10559F81225D040C002564A1 /* AnnotatedImageResponse.swift in Sources */,
 				109D93EB225AA491006A6AF4 /* AnnotatedImageRequest.swift in Sources */,
 				10038431218B5D46002E5496 /* SuggestionsViewController.swift in Sources */,
 				1003842F218ADC58002E5496 /* StoreController.swift in Sources */,

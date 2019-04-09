@@ -27,7 +27,7 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
         transactionID = UUID()
         transactionController.clearLoadedItems()
         
-        sendCloudVisionRequest(image: UIImage(named: "test-safeway")!) {
+        sendCloudVisionRequest(image: UIImage(named: "test-receipt")!) {
             print("Request reached completion")
         }
     }
@@ -159,7 +159,7 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
                 return
             }
             
-            print(String(data: data!, encoding: String.Encoding.utf8))
+            print(String(data: data!, encoding: String.Encoding.utf8)!)
         }.resume()
     }
     

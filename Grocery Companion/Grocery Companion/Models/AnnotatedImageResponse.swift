@@ -19,7 +19,7 @@ struct Response: Codable{
 
 //Nested structs for TextAnnotations
 struct Annotation: Codable{
-    var locale: String
+    var locale: String?
     var description: String
     var boundingPoly: BoundingBox
 }
@@ -35,7 +35,7 @@ struct Vertex: Codable{
 
 //                          Nested structs fo FullAnnotation
 
-struct Full Annotation:Codable{
+struct FullAnnotation:Codable{
     var pages: [Page]
     var text: String
 }

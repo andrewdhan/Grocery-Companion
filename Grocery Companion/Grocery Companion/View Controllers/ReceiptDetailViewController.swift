@@ -27,7 +27,7 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
         transactionID = UUID()
         transactionController.clearLoadedItems()
         
-        sendCloudVisionRequest(image: UIImage(named: "test-receipt")!) {
+        sendCloudVisionRequest(image: UIImage(named: "test-safeway")!) {
             print("Request reached completion")
         }
     }
@@ -153,13 +153,28 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue(Bundle.main.bundleIdentifier ?? "", forHTTPHeaderField: "X-Ios-Bundle-Identifier")
         
+        //Send URLRequest
         URLSession.shared.dataTask(with: request) { (data, _, error) in
             if let error = error {
                 NSLog("Error with request:\(error)")
                 return
             }
+            guard let data = data else {
+                NSLog("Response data is nil")
+                return
+            }
+            //print data for testing
+            print(String(data: data, encoding: String.Encoding.utf8)!)
+            //decode data
+            let decoder = JSONDecoder()
+            do{
+                let response = try decoder.decode(AnnotatedImageResponse.self, from: data)
+                self.detectedLines = self.buildLines(with: response)
+            } catch{
+                NSLog("Error decoding response:\(error)")
+                return
+            }
             
-            print(String(data: data!, encoding: String.Encoding.utf8)!)
         }.resume()
     }
     
@@ -196,6 +211,18 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
         transactionController.clearLoadedItems()
         tableView.reloadData()
     }
+    
+    //TODO:accepts AnnotatedImageResponse as a parameter and builds detected grocery items as an array of tuples
+    private func buildLines(with response: AnnotatedImageResponse)->[(String,Double)]{
+        
+        return [(String,Double)]()
+    }
+    
+    //TODO:load items from detectedLines to receipt.
+    private func loadItems(){
+        
+    }
+    
     //MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ScanReceipt" {
@@ -221,4 +248,9 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
     @IBOutlet weak var dateTextField: UITextField!
     @IBOutlet weak var tableView: UITableView!
     
+    private var detectedLines: [(String,Double)]?{
+        didSet{
+            loadItems()
+        }
+    }
 }

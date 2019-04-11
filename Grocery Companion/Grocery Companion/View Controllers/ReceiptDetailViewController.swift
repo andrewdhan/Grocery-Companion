@@ -220,7 +220,17 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
     
     //TODO:load items from detectedLines to receipt.
     private func loadItems(){
-        
+        guard let detectedLines = detectedLines,
+            let store = self.store,
+            let dateString = dateTextField.text,
+            let date = dateString.toDate(withFormat: .short),
+            let transactionID = transactionID else {return}
+        for (item, price) in detectedLines{
+        transactionController.loadItems(name: item, cost: price, store: store, date: date, transactionID: transactionID)
+        }
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
     
     //MARK: - Navigation

@@ -236,6 +236,19 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
     //MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ScanReceipt" {
+            
+            if (storeTextField.text?.isEmpty ?? true ||
+                totalTextField.text?.isEmpty ?? true ||
+                dateTextField.text?.isEmpty ?? true){
+                let alertController = UIAlertController(title: "", message: "Please enter a store name, receipt total, and receipt date to upload your receipt", preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "OK", style: .default) { (_) in
+                    return
+                }
+                
+                alertController.addAction(okAction)
+                present(alertController,animated: true, completion: nil)
+            }
+
             let destinationVC = segue.destination as! CameraPreviewViewController
             destinationVC.delegate = self
         }

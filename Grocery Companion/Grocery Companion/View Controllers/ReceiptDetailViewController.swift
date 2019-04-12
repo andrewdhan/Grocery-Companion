@@ -27,33 +27,19 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
         transactionID = UUID()
         transactionController.clearLoadedItems()
         
-        sendCloudVisionRequest(image: UIImage(named: "test-safeway")!) {
-            print("Request reached completion")
-        }
     }
     //MARK: - CameraPreviewViewControllerDelegate method
     
     func didFinishProcessingImage(image: UIImage) {
-        //        let cgImage = image.cgImage!
-        //        let orientation = CGImagePropertyOrientation(image.imageOrientation)
-        //
-        //        let imageRequestHandler = VNImageRequestHandler(cgImage: cgImage, orientation: orientation, options: [:])
-        //
-        //        let request = VNDetectTextRectanglesRequest(completionHandler: handleRectangles(request:error:))
-        //
-        //        DispatchQueue.global(qos: .userInitiated).async {
-        //            do {
-        //                try imageRequestHandler.perform([request])
-        //            } catch let error as NSError {
-        //                print("Failed to perform image request: \(error)")
-        //                return
-        //            }
-        //        }
         
+        sendCloudVisionRequest(image: image) {
+            print("Request reached completion")
+        }
     }
     //MARK: - IBActions
     
     @IBAction func addItem(_ sender: Any) {
+        
         //TODO: change for auto population of nearby stores
         guard let storeText = storeTextField.text?.lowercased() else {return}
         self.store = storeText.contains("trader")
@@ -93,22 +79,8 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
         alertController.addAction(okAction)
         present(alertController,animated: true, completion: nil)
     }
-    private func handleRectangles(request: VNRequest, error: Error?){
-        if let error = error {
-            NSLog("Error handling request: \(error)")
-            return
-        }
-        
-        guard let results = request.results as? [VNTextObservation] else {
-            return
-        }
-        
-        print(results.count)
-    }
     
-    private func resultsToText() -> [DetectedText]{
-        return []
-    }
+
     //MARK: - UITableViewDelegate MEthods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return transactionController.loadedItems.count
@@ -175,7 +147,7 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
                 return
             }
             
-        }.resume()
+            }.resume()
     }
     
     //Initializes AnnotatedImageRequest from UIImage and build Json for body of http request
@@ -212,6 +184,11 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
         tableView.reloadData()
     }
     
+    
+    private func resultsToText() -> [DetectedText]{
+        return []
+    }
+    
     //TODO:accepts AnnotatedImageResponse as a parameter and builds detected grocery items as an array of tuples
     private func buildLines(with response: AnnotatedImageResponse)->[(String,Double)]{
         
@@ -226,7 +203,7 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
             let date = dateString.toDate(withFormat: .short),
             let transactionID = transactionID else {return}
         for (item, price) in detectedLines{
-        transactionController.loadItems(name: item, cost: price, store: store, date: date, transactionID: transactionID)
+            transactionController.loadItems(name: item, cost: price, store: store, date: date, transactionID: transactionID)
         }
         DispatchQueue.main.async {
             self.tableView.reloadData()
@@ -236,7 +213,7 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
     //MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ScanReceipt" {
-            
+            //presents alert if store, total and date are empty otherwise proceeds to CameraPreviewVC
             if (storeTextField.text?.isEmpty ?? true ||
                 totalTextField.text?.isEmpty ?? true ||
                 dateTextField.text?.isEmpty ?? true){
@@ -247,10 +224,10 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
                 
                 alertController.addAction(okAction)
                 present(alertController,animated: true, completion: nil)
+            } else {
+                let destinationVC = segue.destination as! CameraPreviewViewController
+                destinationVC.delegate = self
             }
-
-            let destinationVC = segue.destination as! CameraPreviewViewController
-            destinationVC.delegate = self
         }
     }
     

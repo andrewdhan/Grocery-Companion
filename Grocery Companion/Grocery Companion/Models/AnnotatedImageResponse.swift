@@ -8,11 +8,40 @@
 
 import Foundation
 
+struct AnnotatedImageResponse: Decodable{
+    var textAnnotations: [TextAnnotations]
+}
+
+struct TextAnnotations: Decodable{
+    enum CodingKeys: String, CodingKey{
+        case description
+        case boundingPoly
+        
+        enum BoxCodingKeys: String, CodingKey{
+            case vertices
+            
+            enum VertexCodingKeys: String, CodingKey{
+                case x
+                case y
+            }
+        }
+    }
+    
+
+    var text: String
+    var topY: Int
+    var bottomY: Int
+    var leftX: Int
+    var rightX: Int
+}
+
+/*
+ AUTO Decoding
 struct AnnotatedImageResponse: Codable{
     var responses: [Response]
 }
 
-struct Response: Codable{
+ struct Response: Codable{
     var textAnnotations: [Annotation]
 //    var fullTextAnnotation: [FullAnnotation]
 }
@@ -84,3 +113,4 @@ struct Symbol: Codable{
     var text: String
     var confidence: Double
 }
+*/

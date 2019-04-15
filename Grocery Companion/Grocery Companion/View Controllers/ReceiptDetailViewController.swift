@@ -27,6 +27,11 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
         transactionID = UUID()
         transactionController.clearLoadedItems()
         
+//        test
+                sendCloudVisionRequest(image: UIImage(named: "test-safeway")!) {
+                    print("Request reached completion")
+                }
+        
     }
     //MARK: - CameraPreviewViewControllerDelegate method
     
@@ -80,7 +85,6 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
         present(alertController,animated: true, completion: nil)
     }
     
-
     //MARK: - UITableViewDelegate MEthods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return transactionController.loadedItems.count
@@ -183,12 +187,7 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
         transactionController.clearLoadedItems()
         tableView.reloadData()
     }
-    
-    
-    private func resultsToText() -> [DetectedText]{
-        return []
-    }
-    
+   
     //TODO:accepts AnnotatedImageResponse as a parameter and builds detected grocery items as an array of tuples
     private func buildLines(with response: AnnotatedImageResponse)->[(String,Double)]{
         

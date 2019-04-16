@@ -147,9 +147,7 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
                 let imageResponse = try decoder.decode(AnnotatedImageResponse.self, from: data)
                 let textAnnotations = imageResponse.responses.first!.textAnnotations
                 
-                for annotation in textAnnotations{
-                    print("\(annotation.text)")
-                }
+                self.buildLines(with: textAnnotations)
             } catch{
                 NSLog("Error decoding response:\(error)")
                 return
@@ -193,9 +191,24 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
     }
    
     //TODO:accepts AnnotatedImageResponse as a parameter and builds detected grocery items as an array of tuples
-    private func buildLines(with response: AnnotatedImageResponse)->[(String,Double)]{
+    private func buildLines(with textAnnotations: [TextAnnotation])->[(String,Double)]{
+        var results = [(String, Double)]()
         
-        return [(String,Double)]()
+        var dictionary = [Int:String]()
+        
+        
+        
+        print("beginning")
+        for (i, annotation) in textAnnotations.enumerated(){
+            //skips first annotation because it contains all text
+            if i == 0 { continue }
+            
+            
+            let number = annotation.bottomLeft.1
+            print("L\(annotation.bottomLeft.1) \(annotation.text)")
+        }
+        print("ending")
+        return results
     }
     
     //TODO:load items from detectedLines to receipt.
@@ -213,6 +226,15 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
         }
     }
     
+    //checks if y is within given range
+    private func isWithinRange(line: Double, textAnnotation: TextAnnotation, range: Double = 1) -> Bool{
+        let bottomY:Double = (Double)(textAnnotation.bottomLeft.1 + textAnnotation.bottomRight.1)/2
+        if bottomY - range < line && line < bottomY + range {
+            return true
+        } else {
+            return false
+        }
+    }
     //MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ScanReceipt" {

@@ -42,7 +42,7 @@ struct TextAnnotation: Decodable{
         //create nested container for vertices
         var verticesContainer = try boxContainer.nestedUnkeyedContainer(forKey: .vertices)
         //create array of vertices as CGPoints to store info from verticesContainer
-        var vertices = [CGPoint]()
+        var vertices = [(Int,Int)]()
         //loops through verticesContainer, decode Vertex, and append initialized GCPoint to vertices array
         while !verticesContainer.isAtEnd{
             //decodes vertex
@@ -50,7 +50,7 @@ struct TextAnnotation: Decodable{
             let x = try vertexContainer.decode(Int.self, forKey:.x)
             let y = try vertexContainer.decode(Int.self, forKey: .y)
             //creates CGPoint and appends to vertices
-            vertices.append(CGPoint(x: x, y: y))
+            vertices.append((x,y))
         }
         
         topLeft = vertices[0]
@@ -61,10 +61,10 @@ struct TextAnnotation: Decodable{
     
     
     var text: String
-    var topLeft: CGPoint
-    var topRight: CGPoint
-    var bottomLeft: CGPoint
-    var bottomRight: CGPoint
+    var topLeft: (Int,Int)
+    var topRight: (Int,Int)
+    var bottomLeft: (Int,Int)
+    var bottomRight: (Int,Int)
 }
 
 /*

@@ -28,7 +28,7 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
         transactionController.clearLoadedItems()
         
 //        test
-                sendCloudVisionRequest(image: UIImage(named: "test-safeway")!) {
+                sendCloudVisionRequest(image: UIImage(named: "test-receipt")!) {
                     print("Request reached completion")
                 }
         
@@ -144,8 +144,12 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
             //decode data
             let decoder = JSONDecoder()
             do{
-                let response = try decoder.decode(AnnotatedImageResponse.self, from: data)
-                self.detectedLines = self.buildLines(with: response)
+                let imageResponse = try decoder.decode(AnnotatedImageResponse.self, from: data)
+                let textAnnotations = imageResponse.responses.first!.textAnnotations
+                
+                for annotation in textAnnotations{
+                    print("\(annotation.text)")
+                }
             } catch{
                 NSLog("Error decoding response:\(error)")
                 return

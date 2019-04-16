@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreGraphics
 
 struct AnnotatedImageResponse: Decodable{
     var textAnnotations: [TextAnnotations]
@@ -27,12 +28,39 @@ struct TextAnnotations: Decodable{
         }
     }
     
+    init(from decoder: Decoder) throws{
+        //create container for annotation and decode the text
+        let annotationContainer = try decoder.container(keyedBy: CodingKeys.self)
+        text = try annotationContainer.decode(String.self, forKey: .description)
+        
+        //create nested container for boundingPoly
+        let boxContainer = try annotationContainer.nestedContainer(keyedBy: CodingKeys.BoxCodingKeys.self, forKey: .boundingPoly)
+        //create nested container for vertices
+        var verticesContainer = try boxContainer.nestedUnkeyedContainer(forKey: .vertices)
+        //create array of vertices as CGPoints to store info from verticesContainer
+        var vertices = [CGPoint]()
+        //loops through verticesContainer, decode Vertex, and append initialized GCPoint to vertices array
+        while !verticesContainer.isAtEnd{
+            //decodes vertex
+            let vertexContainer = try verticesContainer.nestedContainer(keyedBy: CodingKeys.BoxCodingKeys.VertexCodingKeys.self)
+            let x = try vertexContainer.decode(Int.self, forKey:.x)
+            let y = try vertexContainer.decode(Int.self, forKey: .y)
+            //creates CGPoint and appends to vertices
+            vertices.append(CGPoint(x: x, y: y))
+        }
+        
+        topLeft = vertices[0]
+        topRight = vertices[1]
+        bottomRight = vertices[2]
+        bottomLeft = vertices[3]
+    }
+    
 
     var text: String
-    var topY: Int
-    var bottomY: Int
-    var leftX: Int
-    var rightX: Int
+    var topLeft: CGPoint
+    var topRight: CGPoint
+    var bottomLeft: CGPoint
+    var bottomRight: CGPoint
 }
 
 /*

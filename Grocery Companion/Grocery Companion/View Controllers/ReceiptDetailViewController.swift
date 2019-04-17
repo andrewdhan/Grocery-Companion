@@ -194,7 +194,35 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
     private func buildLines(with textAnnotations: [TextAnnotation])->[(String,Double)]{
         var results = [(String, Double)]()
         
-
+        var dictionary = [Double:String]()
+        
+        var line = -1.0
+        var stringLine = ""
+        
+        for (i, annotation) in textAnnotations.enumerated(){
+            //skips first annotation because it contains all text
+            if i == 0 { continue }
+            //sets line to annotation.bottomY if not already set
+            if line < 0 {
+                line = annotation.bottomY
+            }
+            
+            if isWithinRange(line: line, textAnnotation: annotation, range: 3.0){
+                stringLine += " \(annotation.text)"
+                line = annotation.bottomY
+            } else {
+                print("\(annotation.bottomY) \(stringLine)")
+                stringLine = annotation.text
+                line = annotation.bottomY
+                continue
+            }
+            
+        }
+        
+        
+        for line in dictionary.values {
+            print(line)
+        }
         return results
     }
     

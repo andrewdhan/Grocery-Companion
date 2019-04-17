@@ -194,20 +194,7 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
     private func buildLines(with textAnnotations: [TextAnnotation])->[(String,Double)]{
         var results = [(String, Double)]()
         
-        var dictionary = [Int:String]()
-        
-        
-        
-        print("beginning")
-        for (i, annotation) in textAnnotations.enumerated(){
-            //skips first annotation because it contains all text
-            if i == 0 { continue }
-            
-            
-            let number = annotation.bottomLeft.1
-            print("L\(annotation.bottomLeft.1) \(annotation.text)")
-        }
-        print("ending")
+
         return results
     }
     

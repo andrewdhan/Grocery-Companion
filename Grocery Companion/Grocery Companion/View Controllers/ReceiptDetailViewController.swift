@@ -194,34 +194,31 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
     private func buildLines(with textAnnotations: [TextAnnotation])->[(String,Double)]{
         var results = [(String, Double)]()
         
-        var dictionary = [Int:String]()
+        var dictionary = [Double:String]()
         
-//        var line = -1.0
-//        var stringLine = ""
+        var line = -1.0
+        var stringLine = ""
         
-        for (i, annotation) in textAnnotations.enumerated(){
+        let sorted = textAnnotations.sorted{$0.bottomY < $1.bottomY}
+        
+        for (i, annotation) in sorted.enumerated(){
             //skips first annotation because it contains all text
             if i == 0 { continue }
             
-            let line:Int = Int(annotation.bottomY)/2
-            
-            let value = dictionary[line]
-            
-            if value == nil {
-                dictionary[line] = annotation.text
-            } else {
-                dictionary[line] = value! + " " + annotation.text
+//            sets line to annotation.bottomY if not already set
+            if line < 0 {
+                line = annotation.bottomY
             }
-//
-//            if isWithinRange(line: line, textAnnotation: annotation, range: 3.0){
-//                stringLine += " \(annotation.text)"
-//                line = annotation.bottomY
-//            } else {
-//                print("\(annotation.bottomY) \(stringLine)")
-//                stringLine = annotation.text
-//                line = annotation.bottomY
-//                continue
-//            }
+
+            if isWithinRange(line: line, textAnnotation: annotation, range: 3.0){
+                stringLine += " \(annotation.text)"
+                line = annotation.bottomY
+            } else {
+                print("\(annotation.bottomY) \(stringLine)")
+                stringLine = annotation.text
+                line = annotation.bottomY
+                continue
+            }
             
         }
         

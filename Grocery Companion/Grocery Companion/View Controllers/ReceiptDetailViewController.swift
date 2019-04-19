@@ -215,7 +215,7 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
 
             if isWithinRange(line: line, textAnnotation: annotation, range: 3.0){
                 //if stringLine consists of texts then have spaces otherwise, no spaces
-                if 
+
                 stringLine += " \(annotation.text)"
                 line = annotation.bottomY
             } else {
@@ -260,10 +260,7 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
         }
     }
     
-    //Checks if string is a double after stripping it of spaces
-    private func isStringDouble(string:String) -> Bool{
-        if str
-    }
+    
     //MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ScanReceipt" {

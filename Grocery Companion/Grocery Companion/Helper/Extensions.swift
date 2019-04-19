@@ -22,6 +22,14 @@ extension String{
         dateFormatter.dateStyle = format
         return dateFormatter.date(from: self)
     }
+    
+    func isDouble() -> Bool{
+        if Double(self) == nil {
+            return false
+        } else {
+            return true
+        }
+    }
 }
 
 extension Dictionary{

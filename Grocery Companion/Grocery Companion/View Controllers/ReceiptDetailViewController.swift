@@ -196,12 +196,15 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
         
         var dictionary = [Double:String]()
         
+        var items = [Double:String]()
+        var price = [Double:String]()
+        
         var line = -1.0
         var stringLine = ""
         
-        let sorted = textAnnotations.sorted{$0.bottomY < $1.bottomY}
+//        let sorted = textAnnotations.sorted{$0.bottomY < $1.bottomY}
         
-        for (i, annotation) in sorted.enumerated(){
+        for (i, annotation) in textAnnotations.enumerated(){
             //skips first annotation because it contains all text
             if i == 0 { continue }
             
@@ -211,9 +214,12 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
             }
 
             if isWithinRange(line: line, textAnnotation: annotation, range: 3.0){
+                //if stringLine consists of texts then have spaces otherwise, no spaces
+                if 
                 stringLine += " \(annotation.text)"
                 line = annotation.bottomY
             } else {
+                
                 print("\(annotation.bottomY) \(stringLine)")
                 stringLine = annotation.text
                 line = annotation.bottomY
@@ -252,6 +258,11 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
         } else {
             return false
         }
+    }
+    
+    //Checks if string is a double after stripping it of spaces
+    private func isStringDouble(string:String) -> Bool{
+        if str
     }
     //MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

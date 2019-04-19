@@ -27,10 +27,10 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
         transactionID = UUID()
         transactionController.clearLoadedItems()
         
-//        test
-                sendCloudVisionRequest(image: UIImage(named: "test-receipt")!) {
-                    print("Request reached completion")
-                }
+        //        test
+        sendCloudVisionRequest(image: UIImage(named: "test-receipt")!) {
+            print("Request reached completion")
+        }
         
     }
     //MARK: - CameraPreviewViewControllerDelegate method
@@ -189,7 +189,7 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
         transactionController.clearLoadedItems()
         tableView.reloadData()
     }
-   
+    
     //TODO:accepts AnnotatedImageResponse as a parameter and builds detected grocery items as an array of tuples
     private func buildLines(with textAnnotations: [TextAnnotation])->[(String,Double)]{
         var results = [(String, Double)]()
@@ -202,21 +202,26 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
         var line = -1.0
         var stringLine = ""
         
-//        let sorted = textAnnotations.sorted{$0.bottomY < $1.bottomY}
+        //        let sorted = textAnnotations.sorted{$0.bottomY < $1.bottomY}
         
         for (i, annotation) in textAnnotations.enumerated(){
             //skips first annotation because it contains all text
             if i == 0 { continue }
             
-//            sets line to annotation.bottomY if not already set
+            //            sets line to annotation.bottomY if not already set
             if line < 0 {
                 line = annotation.bottomY
             }
-
+            
             if isWithinRange(line: line, textAnnotation: annotation, range: 3.0){
                 //if stringLine consists of texts then have spaces otherwise, no spaces
-
-                stringLine += " \(annotation.text)"
+                let newText = annotation.text
+                if stringLine.isDouble() &&
+                    (newText.isDouble() || newText == "."){
+                    stringLine += "\(annotation.text)"
+                } else {
+                    stringLine += " \(annotation.text)"
+                }
                 line = annotation.bottomY
             } else {
                 

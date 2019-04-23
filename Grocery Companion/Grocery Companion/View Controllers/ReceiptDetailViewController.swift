@@ -196,8 +196,8 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
         
         var dictionary = [Double:String]()
         
-        var items = [Double:String]()
-        var price = [Double:String]()
+        var items = [(Double,String)]()
+        var price = [(Double,String)]()
         
         var line = -1.0
         var stringLine = ""
@@ -224,7 +224,11 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
                 }
                 line = annotation.bottomY
             } else {
-                
+                if(stringLine.isDouble()){
+                    price.append((line,stringLine))
+                } else {
+                    items.append((line,stringLine))
+                }
                 print("\(annotation.bottomY) \(stringLine)")
                 stringLine = annotation.text
                 line = annotation.bottomY

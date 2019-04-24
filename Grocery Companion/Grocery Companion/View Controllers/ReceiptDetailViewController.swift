@@ -197,7 +197,7 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
         var dictionary = [Double:String]()
         
         var items = [(Double,String)]()
-        var price = [(Double,String)]()
+        var prices = [(Double,String)]()
         
         var line = -1.0
         var stringLine = ""
@@ -225,21 +225,29 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
                 line = annotation.bottomY
             } else {
                 if(stringLine.isDouble()){
-                    price.append((line,stringLine))
+                    prices.append((line,stringLine))
                 } else {
                     items.append((line,stringLine))
                 }
-                print("\(annotation.bottomY) \(stringLine)")
+//                print("\(annotation.bottomY) \(stringLine)")
                 stringLine = annotation.text
                 line = annotation.bottomY
                 continue
             }
             
         }
-        
-        
-        for line in dictionary.values {
-            print(line)
+        print(items)
+        print(prices)
+        for (index, value) in items.enumerated() {
+
+            if value.0/10 == prices[index].0/10 {
+                print(value.1)
+                print(prices[index].1)
+                print(value.1 + " " + prices[index].1)
+            } else {
+                print("skipped")
+            }
+
         }
         return results
     }

@@ -231,15 +231,19 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
             }
             
         }
+//      Matches items with prices and set results to detected Lines
+        var result = [(String,Double)]()
         
         for value in items {
             let price = valueWithinRange(dictionary: prices, key: value.0, range: 5)
             
             if let price = price {
+                result.append((value.1,Double(price)!))
                 print(value.1 + " " + price)
             }
-          
         }
+        
+        detectedLines = result
     }
     
     //TODO:load items from detectedLines to receipt.

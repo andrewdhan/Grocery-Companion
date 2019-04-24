@@ -216,15 +216,15 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
             if isWithinRange(line: line, textAnnotation: annotation, range: 3){
                 //if stringLine consists of texts then have spaces otherwise, no spaces
                 let newText = annotation.text
-                if stringLine.isInt() &&
-                    (newText.isInt() || newText == "."){
+                if stringLine.isDouble() &&
+                    (newText.isDouble() || newText == "."){
                     stringLine += "\(annotation.text)"
                 } else {
                     stringLine += " \(annotation.text)"
                 }
                 line = annotation.bottomY
             } else {
-                if(stringLine.isInt()){
+                if(stringLine.isDouble()){
                     prices[line] = stringLine
 //                    prices.append((line,stringLine))
                 } else {
@@ -239,17 +239,17 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
         }
         print(items)
         print(prices)
-//        for (index, value) in items.enumerated() {
-//
-//            if value.0/10 == prices[index].0/10 {
-//                print(value.1)
-//                print(prices[index].1)
-//                print(value.1 + " " + prices[index].1)
-//            } else {
-//                print("skipped")
-//            }
-//
-//        }
+        
+        for (index, value) in items.enumerated() {
+            let price = valueWithinRange(dictionary: prices, key: value.0, range: 3)
+            
+            if let price = price {
+                print(value.1 + " " + price)
+            } else {
+                print("skipped")
+            }
+          
+        }
         return results
     }
     
@@ -278,6 +278,16 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
         }
     }
     
+    //Checks dictionary to see if there is a value associated with a key within a certain range
+    private func valueWithinRange(dictionary: [Int: String], key: Int, range: Int = 2) -> String?{
+        var result:String? = nil
+        
+        for i in key-range...key+range{
+            result = dictionary[i]
+        }
+        
+        return result
+    }
     
     //MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

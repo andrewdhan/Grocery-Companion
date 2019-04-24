@@ -191,11 +191,7 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
     }
     
     //TODO:accepts AnnotatedImageResponse as a parameter and builds detected grocery items as an array of tuples
-    private func buildLines(with textAnnotations: [TextAnnotation])->[(String,Double)]{
-        var results = [(String, Double)]()
-        
-        var dictionary = [Double:String]()
-        
+    private func buildLines(with textAnnotations: [TextAnnotation]){
         var items = [(Int,String)]()
         var prices = [Int:String]()
         
@@ -226,31 +222,24 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
             } else {
                 if(stringLine.isDouble()){
                     prices[line] = stringLine
-//                    prices.append((line,stringLine))
                 } else {
                     items.append((line,stringLine))
                 }
-//                print("\(annotation.bottomY) \(stringLine)")
                 stringLine = annotation.text
                 line = annotation.bottomY
                 continue
             }
             
         }
-        print(items)
-        print(prices)
         
-        for (index, value) in items.enumerated() {
-            let price = valueWithinRange(dictionary: prices, key: value.0, range: 3)
+        for value in items {
+            let price = valueWithinRange(dictionary: prices, key: value.0, range: 5)
             
             if let price = price {
                 print(value.1 + " " + price)
-            } else {
-                print("skipped")
             }
           
         }
-        return results
     }
     
     //TODO:load items from detectedLines to receipt.
@@ -284,6 +273,9 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
         
         for i in key-range...key+range{
             result = dictionary[i]
+            if result != nil {
+                return result
+            }
         }
         
         return result

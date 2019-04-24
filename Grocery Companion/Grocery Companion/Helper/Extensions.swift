@@ -23,8 +23,8 @@ extension String{
         return dateFormatter.date(from: self)
     }
     
-    func isDouble() -> Bool{
-        if Double(self) == nil {
+    func isInt() -> Bool{
+        if Int(self) == nil {
             return false
         } else {
             return true

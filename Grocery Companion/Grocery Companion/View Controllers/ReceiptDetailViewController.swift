@@ -196,10 +196,10 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
         
         var dictionary = [Double:String]()
         
-        var items = [(Double,String)]()
-        var prices = [(Double,String)]()
+        var items = [(Int,String)]()
+        var prices = [Int:String]()
         
-        var line = -1.0
+        var line = -1
         var stringLine = ""
         
         //        let sorted = textAnnotations.sorted{$0.bottomY < $1.bottomY}
@@ -213,19 +213,20 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
                 line = annotation.bottomY
             }
             
-            if isWithinRange(line: line, textAnnotation: annotation, range: 3.0){
+            if isWithinRange(line: line, textAnnotation: annotation, range: 3){
                 //if stringLine consists of texts then have spaces otherwise, no spaces
                 let newText = annotation.text
-                if stringLine.isDouble() &&
-                    (newText.isDouble() || newText == "."){
+                if stringLine.isInt() &&
+                    (newText.isInt() || newText == "."){
                     stringLine += "\(annotation.text)"
                 } else {
                     stringLine += " \(annotation.text)"
                 }
                 line = annotation.bottomY
             } else {
-                if(stringLine.isDouble()){
-                    prices.append((line,stringLine))
+                if(stringLine.isInt()){
+                    prices[line] = stringLine
+//                    prices.append((line,stringLine))
                 } else {
                     items.append((line,stringLine))
                 }
@@ -238,17 +239,17 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
         }
         print(items)
         print(prices)
-        for (index, value) in items.enumerated() {
-
-            if value.0/10 == prices[index].0/10 {
-                print(value.1)
-                print(prices[index].1)
-                print(value.1 + " " + prices[index].1)
-            } else {
-                print("skipped")
-            }
-
-        }
+//        for (index, value) in items.enumerated() {
+//
+//            if value.0/10 == prices[index].0/10 {
+//                print(value.1)
+//                print(prices[index].1)
+//                print(value.1 + " " + prices[index].1)
+//            } else {
+//                print("skipped")
+//            }
+//
+//        }
         return results
     }
     
@@ -268,8 +269,8 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
     }
     
     //checks if y is within given range
-    private func isWithinRange(line: Double, textAnnotation: TextAnnotation, range: Double = 1) -> Bool{
-        let bottomY:Double = (Double)(textAnnotation.bottomLeft.1 + textAnnotation.bottomRight.1)/2
+    private func isWithinRange(line: Int, textAnnotation: TextAnnotation, range: Int = 2) -> Bool{
+        let bottomY = textAnnotation.bottomY
         if bottomY - range < line && line < bottomY + range {
             return true
         } else {

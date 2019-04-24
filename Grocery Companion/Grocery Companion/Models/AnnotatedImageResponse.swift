@@ -65,10 +65,10 @@ struct TextAnnotation: Decodable{
     var topRight: (Int,Int)
     var bottomLeft: (Int,Int)
     var bottomRight: (Int,Int)
-    var bottomY:Double{
-        return Double((bottomLeft.1+bottomRight.1)/2)
+    var bottomY:Int{
+        return (bottomLeft.1+bottomRight.1)/2
     }
-    var topY:Double{
-        return Double((topLeft.1+topRight.1)/2)
+    var topY:Int{
+        return (topLeft.1+topRight.1)/2
     }
 }

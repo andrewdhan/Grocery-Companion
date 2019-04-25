@@ -26,23 +26,17 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
         super.viewWillAppear(animated)
         transactionID = UUID()
         transactionController.clearLoadedItems()
-        
-        //        test
-        sendCloudVisionRequest(image: UIImage(named: "test-receipt")!) {
-            print("Request reached completion")
-        }
-        
     }
+
     //MARK: - CameraPreviewViewControllerDelegate method
-    
     func didFinishProcessingImage(image: UIImage) {
         
         sendCloudVisionRequest(image: image) {
             print("Request reached completion")
         }
     }
-    //MARK: - IBActions
     
+    //MARK: - IBActions
     @IBAction func addItem(_ sender: Any) {
         
         //TODO: change for auto population of nearby stores
@@ -147,7 +141,7 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
                 let imageResponse = try decoder.decode(AnnotatedImageResponse.self, from: data)
                 let textAnnotations = imageResponse.responses.first!.textAnnotations
                 
-                self.buildLines(with: textAnnotations)
+                self.detectedLines = self.buildLines(with: textAnnotations)
             } catch{
                 NSLog("Error decoding response:\(error)")
                 return
@@ -179,6 +173,7 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
             return nil
         }
     }
+    
     //MARK: - Private Methods
     private func clearViewText(){
         totalTextField.text = ""
@@ -190,8 +185,8 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
         tableView.reloadData()
     }
     
-    //TODO:accepts AnnotatedImageResponse as a parameter and builds detected grocery items as an array of tuples
-    private func buildLines(with textAnnotations: [TextAnnotation]){
+    //Accepts textAnnotation decoded from AnnotatedImageResponse as a parameter and returns detected grocery items as an array of tuples
+    private func buildLines(with textAnnotations: [TextAnnotation])->[(String, Double)]{
         var items = [(Int,String)]()
         var prices = [Int:String]()
         
@@ -243,7 +238,7 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
             }
         }
         
-        detectedLines = result
+        return result
     }
     
     //TODO:load items from detectedLines to receipt.

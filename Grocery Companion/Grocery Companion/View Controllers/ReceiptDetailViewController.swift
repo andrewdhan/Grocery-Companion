@@ -12,9 +12,6 @@ import Vision
 private var baseURL = URL(string: "https://vision.googleapis.com/v1/images:annotate")!
 
 class ReceiptDetailViewController: UIViewController, CameraPreviewViewControllerDelegate, UITableViewDataSource, UITableViewDelegate {
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
@@ -59,6 +56,7 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
         tableView.reloadData()
     }
     
+    //Submits receipt by creating transaction model given that header info are filled out
     @IBAction func submitReceipt(_ sender: Any) {
         guard let store = self.store,
             let dateString = dateTextField.text,
@@ -241,7 +239,7 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
         return result
     }
     
-    //TODO:load items from detectedLines to receipt.
+//    Load items from detectedLines to tableview
     private func loadItems(){
         guard let detectedLines = detectedLines,
             let store = self.store,
@@ -256,7 +254,8 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
         }
     }
     
-    //checks if y is within given range
+    //checks if line is within given range of textAnnotation
+    //this function is valuable because texts might be have different Y values even though they are on the same line visually
     private func isWithinRange(line: Int, textAnnotation: TextAnnotation, range: Int = 2) -> Bool{
         let bottomY = textAnnotation.bottomY
         if bottomY - range < line && line < bottomY + range {

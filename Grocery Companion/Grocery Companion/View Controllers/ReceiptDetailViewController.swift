@@ -11,7 +11,7 @@ import Vision
 
 private var baseURL = URL(string: "https://vision.googleapis.com/v1/images:annotate")!
 
-class ReceiptDetailViewController: UIViewController, CameraPreviewViewControllerDelegate, UITableViewDataSource, UITableViewDelegate {
+class ReceiptDetailViewController: UIViewController, CameraPreviewViewControllerDelegate, UITableViewDataSource,  UITableViewDelegate, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
@@ -35,15 +35,14 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
         }
     }
     
+
     //MARK: - IBActions
+
+    
+    //TODO: change for auto population of nearby stores
+    //TODO: present alert if receipt header fields are not filled
     @IBAction func addItem(_ sender: Any) {
-        
-        //TODO: change for auto population of nearby stores
-        guard let storeText = storeTextField.text?.lowercased() else {return}
-        self.store = storeText.contains("trader")
-            ? StoreController.stores[StoreName.traderJoes.rawValue]
-            : StoreController.stores[StoreName.wholeFoods.rawValue]
-        
+
         guard let store = self.store,
             let dateString = dateTextField.text,
             let newItemName = addItemNameField.text,
@@ -91,7 +90,18 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
         
         return cell
     }
-    
+    //MARK: - UITextFieldDelegate functions
+    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
+       
+        //update store property when textField is updated
+        if textField.tag == TextFieldID.store.rawValue {
+            
+            guard let storeText = storeTextField.text?.lowercased() else {return}
+            self.store = storeText.contains("trader")
+                ? StoreController.stores[StoreName.traderJoes.rawValue]
+                : StoreController.stores[StoreName.wholeFoods.rawValue]
+        }
+    }
     //MARK: - Networking Functions
     
     //Sends image data to Google Cloud Vision API to perform OCR

@@ -78,15 +78,11 @@ class CameraPreviewViewController: UIViewController, AVCapturePhotoCaptureDelega
         
         testView.image = croppedImage
         delegate?.didFinishProcessingImage(image: croppedImage)
-        
+        self.dismiss(animated: true, completion: nil)
         
     }
     //MARK: - Private Methods
-    private func cropImage(cgImage: CGImage)->UIImage?{
-        
-        
-        return nil
-    }
+
     private func cropImage(_ inputImage: UIImage, toRect cropRect: CGRect, viewWidth: CGFloat, viewHeight: CGFloat) -> UIImage?
     {
         let imageViewScale = max(CGFloat(inputImage.size.width) / viewWidth,

@@ -17,6 +17,12 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
         tableView.delegate = self
         tableView.dataSource = self
         
+        //set textfieldDelegates
+        storeTextField.delegate = self
+        totalTextField.delegate = self
+        dateTextField.delegate = self
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -90,6 +96,7 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
         
         return cell
     }
+    
     //MARK: - UITextFieldDelegate functions
     func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
        
@@ -102,6 +109,7 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
                 : StoreController.stores[StoreName.wholeFoods.rawValue]
         }
     }
+    
     //MARK: - Networking Functions
     
     //Sends image data to Google Cloud Vision API to perform OCR

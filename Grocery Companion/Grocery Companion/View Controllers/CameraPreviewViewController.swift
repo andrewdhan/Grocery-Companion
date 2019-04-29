@@ -79,6 +79,7 @@ class CameraPreviewViewController: UIViewController, AVCapturePhotoCaptureDelega
         testView.image = croppedImage
         delegate?.didFinishProcessingImage(image: croppedImage)
         
+        
     }
     //MARK: - Private Methods
     private func cropImage(cgImage: CGImage)->UIImage?{

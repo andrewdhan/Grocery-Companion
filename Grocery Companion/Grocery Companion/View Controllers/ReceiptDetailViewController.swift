@@ -27,8 +27,10 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
 
     //MARK: - CameraPreviewViewControllerDelegate method
     func didFinishProcessingImage(image: UIImage) {
-        
-        sendCloudVisionRequest(image: image) {
+        //test
+        let testImage = UIImage(named: "test-receipt")!
+        //
+        sendCloudVisionRequest(image: testImage) {
             print("Request reached completion")
         }
     }

@@ -36,7 +36,7 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
         //test
         let testImage = UIImage(named: "test-receipt")!
         //
-        sendCloudVisionRequest(image: testImage) {
+        sendCloudVisionRequest(image: image) {
             print("Request reached completion")
         }
     }

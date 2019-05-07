@@ -36,8 +36,17 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
         //test
         let testImage = UIImage(named: "test-receipt")!
         //
-        sendCloudVisionRequest(image: image) {
-            print("Request reached completion")
+       
+        sendCloudVisionRequest(image: image) { (results, error) in
+            if let error = error {
+                NSLog("Error with cloud vision:\(error)")
+                return
+            }
+            guard let results = results else {
+                NSLog("Results were nil")
+                return
+            }
+            self.detectedLines = self.buildLines(with: results)
         }
     }
     
@@ -113,7 +122,7 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
     //MARK: - Networking Functions
     
     //Sends image data to Google Cloud Vision API to perform OCR
-    private func sendCloudVisionRequest(image: UIImage, completion:()->Void){
+    private func sendCloudVisionRequest(image: UIImage, completion:@escaping ([TextAnnotation]?,Error?)->Void){
         
         //Use URLComponents to add API Key to base URL
         var urlComponents = URLComponents(url: baseURL, resolvingAgainstBaseURL: false)!
@@ -144,11 +153,11 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
         //Send URLRequest
         URLSession.shared.dataTask(with: request) { (data, _, error) in
             if let error = error {
-                NSLog("Error with request:\(error)")
+                completion(nil,error)
                 return
             }
             guard let data = data else {
-                NSLog("Response data is nil")
+                completion(nil,error)
                 return
             }
             //print data for testing
@@ -159,10 +168,9 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
                 let imageResponse = try decoder.decode(AnnotatedImageResponse.self, from: data)
                 let textAnnotations = imageResponse.responses.first!.textAnnotations
                 
-                self.detectedLines = self.buildLines(with: textAnnotations)
+                completion(textAnnotations, nil)
             } catch{
-                NSLog("Error decoding response:\(error)")
-                return
+               completion(nil, error)
             }
             
             }.resume()

@@ -13,5 +13,5 @@ struct Price: Equatable{
     let value: NSNumber
     let store: Store
     let date: Date
-    let transactionID: UUID
+//    let transactionID: UUID
 }

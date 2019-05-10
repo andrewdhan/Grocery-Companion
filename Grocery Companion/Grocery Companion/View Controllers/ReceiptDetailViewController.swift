@@ -334,7 +334,7 @@ class ReceiptDetailViewController: UIViewController, CameraPreviewViewController
     private var store: Store?
     private var transactionID: UUID?
     
-    private let transactionController = TransactionController.shared
+//    private let transactionController = TransactionController.shared
     private let groceryItemController = GroceryItemController.shared
     
     @IBOutlet weak var addItemNameField: UITextField!

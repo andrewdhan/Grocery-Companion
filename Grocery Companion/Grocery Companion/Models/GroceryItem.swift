@@ -10,9 +10,8 @@ import Foundation
 
 class GroceryItem: Equatable{
     
-    init(name: String, lowestPrice: Price? = nil, inGroceryList: Bool, priceHistory: [Price] = [Price]()) {
+    init(name: String, lowestPrice: Price? = nil, inGroceryList: Bool) {
         self.name = name
-        self.priceHistory = priceHistory
         self.isInGroceryList = inGroceryList
         self.isChecked = false
     }
@@ -24,14 +23,6 @@ class GroceryItem: Equatable{
     }
     //MARK: - Helpful Method
     
-    func getPriceWithID(transactionID: UUID) -> Price?{
-        for price in priceHistory{
-            if price.transactionID == transactionID{
-                return price
-            }
-        }
-        return nil
-    }
     func cheapestPlaceToBuy() -> Store?{
         let relevantPrices: [Price]
         if priceHistory.count < 3 {
@@ -67,7 +58,7 @@ class GroceryItem: Equatable{
             return priceHistory.sorted{$0.value.doubleValue < $1.value.doubleValue}.first!
         }
     }
-    var priceHistory: [Price]
+
     var isChecked: Bool
     var isInGroceryList: Bool
 }

@@ -16,6 +16,7 @@
 		101B06C4218A162100275B94 /* ReceiptDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101B06C3218A162000275B94 /* ReceiptDetailViewController.swift */; };
 		10559F81225D040C002564A1 /* AnnotatedImageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10559F80225D040C002564A1 /* AnnotatedImageResponse.swift */; };
 		108438352285B7E800E50208 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 108438332285B7E800E50208 /* Model.xcdatamodeld */; };
+		108438392286101300E50208 /* Item+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108438382286101300E50208 /* Item+Convenience.swift */; };
 		108D95CD2188C19400D1B04D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108D95CC2188C19400D1B04D /* AppDelegate.swift */; };
 		108D95D22188C19400D1B04D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 108D95D02188C19400D1B04D /* Main.storyboard */; };
 		108D95D42188C19600D1B04D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 108D95D32188C19600D1B04D /* Assets.xcassets */; };
@@ -46,6 +47,7 @@
 		101B06C3218A162000275B94 /* ReceiptDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptDetailViewController.swift; sourceTree = "<group>"; };
 		10559F80225D040C002564A1 /* AnnotatedImageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotatedImageResponse.swift; sourceTree = "<group>"; };
 		108438342285B7E800E50208 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		108438382286101300E50208 /* Item+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+Convenience.swift"; sourceTree = "<group>"; };
 		108D95C92188C19400D1B04D /* Grocery Companion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Grocery Companion.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		108D95CC2188C19400D1B04D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		108D95D12188C19400D1B04D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				108438332285B7E800E50208 /* Model.xcdatamodeld */,
+				108438382286101300E50208 /* Item+Convenience.swift */,
 				108D95E52188E6D100D1B04D /* GroceryItem.swift */,
 				10B7FDCF2257D42B002AE242 /* DetectedText.swift */,
 				108D95E82188E78700D1B04D /* Price.swift */,
@@ -260,6 +263,7 @@
 				10038431218B5D46002E5496 /* SuggestionsViewController.swift in Sources */,
 				1003842F218ADC58002E5496 /* StoreController.swift in Sources */,
 				108D95E32188D56500D1B04D /* ItemTableViewCell.swift in Sources */,
+				108438392286101300E50208 /* Item+Convenience.swift in Sources */,
 				108438352285B7E800E50208 /* Model.xcdatamodeld in Sources */,
 				108D95F921896BAE00D1B04D /* CameraPreviewViewController.swift in Sources */,
 				10B7FDD02257D42B002AE242 /* DetectedText.swift in Sources */,

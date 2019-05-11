@@ -15,4 +15,8 @@ extension Item {
         self.name = name
         self.centValue = Int16(centValue)
     }
+    
+    public var price:Double {
+        return Double(centValue)/100.0
+    }
 }

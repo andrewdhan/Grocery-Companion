@@ -2,6 +2,8 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14490.99" systemVersion="18E226" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Item" representedClassName="Item" syncable="YES" codeGenerationType="class">
         <attribute name="centValue" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="isChecked" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="isInList" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <relationship name="store" maxCount="1" deletionRule="Nullify" destinationEntity="Store" inverseName="item" inverseEntity="Store" syncable="YES"/>
     </entity>
@@ -13,7 +15,7 @@
         <relationship name="item" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Item" inverseName="store" inverseEntity="Item" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Item" positionX="82.11328125" positionY="-59.12890625" width="128" height="88"/>
+        <element name="Item" positionX="82.11328125" positionY="-59.12890625" width="128" height="118"/>
         <element name="Store" positionX="-156.89453125" positionY="-83.51171875" width="128" height="118"/>
     </elements>
 </model>

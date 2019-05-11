@@ -16,44 +16,49 @@ class GroceryItemController {
     
     //MARK: - CRUD Methods
     
-    func addItem(withName name: String, addToList: Bool){
-        let item = Item(name: name, centValue: nil, context: moc)
+    func addItem( name: String, price: Double?=nil, addToList: Bool, context: NSManagedObjectContext = moc){
+
+        var centValue:Int? = nil
+        
+        if let price = price {
+            centValue = Int(price*100)
+        }
+        
+        let item = Item(name: name, centValue: centValue, context: context)
         
         item.isInList = addToList
+        
+        context.saveToPersistentStore()
     }
 
-    func checkOffItem(item: GroceryItem){
-        let index = allItems.firstIndex(of: item)!
-        allItems[index].isChecked = !allItems[index].isChecked
+    func deleteItem(item:Item, context: NSManagedObjectContext = moc){
+        moc.delete(item)
+        context.saveToPersistentStore()
     }
     
-    func clearCheckedItems(){
-        for item in allItems {
-            if item.isChecked {
-                item.isChecked = false
-                item.isInGroceryList = false
-            }
-        }
+    func checkOffItem(item: Item, context: NSManagedObjectContext = moc){
+        item.isChecked = true
+        context.saveToPersistentStore()
     }
+    
+    
+    // TODO: - Implement clear all checks method
+    
     //MARK: - Getter Method
     
-    func getItemWithName(_ name: String) -> GroceryItem?{
-        let index = indexInAllItems(withName: name)
-        if index < 0 {
+    func getItemWithName(_ name: String, context: NSManagedObjectContext = moc) -> Item?{
+        let request:NSFetchRequest<Item> = NSFetchRequest(entityName: "GroceryModel")
+        request.fetchLimit = 1
+        request.predicate = NSPredicate(format: "name == %@", name)
+        
+        do {
+            let result = context.fetch(request) as! Item
+            return result
+        }
+        catch {
             return nil
-        } else {
-            return allItems[index]
         }
-    }
-    
-    //MARK: - Private Methods
-    private func indexInAllItems(withName name: String) -> Int {
-        for (index, item) in allItems.enumerated(){
-            if item.name.lowercased() == name.lowercased(){
-                return index
-            }
-        }
-        return -1
+        
     }
     
     //MARK: - Private Methods

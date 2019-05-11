@@ -8,13 +8,8 @@
 
 import Foundation
 import UIKit
-import Vision
+import CoreData
 
-extension Double{
-    func toNSNumber() -> NSNumber{
-        return NSNumber(value: self)
-    }
-}
 
 extension String{
     func toDate(withFormat format: DateFormatter.Style) -> Date? {
@@ -85,6 +80,19 @@ extension UIImage.Orientation {
         case .leftMirrored: self = .leftMirrored
         case .right: self = .right
         case .rightMirrored: self = .rightMirrored
+        }
+    }
+}
+
+extension NSManagedObjectContext{
+    func saveToPersistentStore(){
+        self.perform {
+            do{
+                try self.save()
+            } catch {
+                NSLog("Trouble saving: \(error)")
+                self.reset()
+            }
         }
     }
 }

@@ -7,63 +7,62 @@
 //
 
 import Foundation
+import CoreData
+
+private let moc =  CoreDataStack.shared.mainContext
 
 class GroceryItemController {
     static let shared = GroceryItemController()
     
-    init() {
-        self.allItems = [GroceryItem]()
-    }
     //MARK: - CRUD Methods
     
-    func addItem(withName name: String){
-        let index = indexInAllItems(withName: name)
+    func addItem( name: String, price: Double?=nil, addToList: Bool, context: NSManagedObjectContext = moc){
+
+        var centValue:Int? = nil
         
-        if index >= 0 {
-            allItems[index].isInGroceryList = true
-        } else {
-            let newItem = GroceryItem(name: name, inGroceryList: true)
-            allItems.append(newItem)
+        if let price = price {
+            centValue = Int(price*100)
         }
+        
+        let item = Item(name: name, centValue: centValue, context: context)
+        
+        item.isInList = addToList
+        
+        context.saveToPersistentStore()
     }
 
-    func checkOffItem(item: GroceryItem){
-        let index = allItems.firstIndex(of: item)!
-        allItems[index].isChecked = !allItems[index].isChecked
+    func deleteItem(item:Item, context: NSManagedObjectContext = moc){
+        moc.delete(item)
+        context.saveToPersistentStore()
     }
     
-    func clearCheckedItems(){
-        for item in allItems {
-            if item.isChecked {
-                item.isChecked = false
-                item.isInGroceryList = false
-            }
-        }
+    func checkOffItem(item: Item, context: NSManagedObjectContext = moc){
+        item.isChecked = true
+        context.saveToPersistentStore()
     }
+    
+    
+    // TODO: - Implement clear all checks method
+    
     //MARK: - Getter Method
     
-    func getItemWithName(_ name: String) -> GroceryItem?{
-        let index = indexInAllItems(withName: name)
-        if index < 0 {
-            return nil
-        } else {
-            return allItems[index]
+    func getItemWithName(_ name: String, context: NSManagedObjectContext = moc) -> Item?{
+        let request:NSFetchRequest<Item> = NSFetchRequest(entityName: "GroceryModel")
+        request.fetchLimit = 1
+        request.predicate = NSPredicate(format: "name == %@", name)
+        
+        do {
+            let result = try context.fetch(request) as! Item
+            return result
         }
+        catch {
+            return nil
+        }
+        
     }
     
     //MARK: - Private Methods
-    private func indexInAllItems(withName name: String) -> Int {
-        for (index, item) in allItems.enumerated(){
-            if item.name.lowercased() == name.lowercased(){
-                return index
-            }
-        }
-        return -1
-    }
+
     
-    //MARK: - Properties
-     var groceryList: [GroceryItem] {
-        return allItems.filter{$0.isInGroceryList == true}
-    }
-     var allItems: [GroceryItem]
+    
 }

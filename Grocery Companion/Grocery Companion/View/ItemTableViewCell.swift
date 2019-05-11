@@ -9,7 +9,7 @@
 import UIKit
 
 protocol ItemTableViewCellDelegate: class{
-    func toggleCheck(for item: GroceryItem)
+    func toggleCheck(for item: Item)
 }
 
 class ItemTableViewCell: UITableViewCell {
@@ -24,7 +24,7 @@ class ItemTableViewCell: UITableViewCell {
         let isChecked = groceryItem.isChecked
         
         if isChecked {
-            let attributedText = NSMutableAttributedString(string: groceryItem.name)
+            let attributedText = NSMutableAttributedString(string: groceryItem.name!)
             attributedText.addAttribute(NSAttributedString.Key.strikethroughStyle, value:2, range: NSMakeRange(0, attributedText.length))
             itemLabel.attributedText = attributedText
         } else {
@@ -44,7 +44,7 @@ class ItemTableViewCell: UITableViewCell {
     
     weak var delegate: ItemTableViewCellDelegate?
     
-    var groceryItem: GroceryItem?{
+    var groceryItem: Item?{
         didSet{
             updateViews()
         }

@@ -95,18 +95,18 @@ class GroceryListTableViewController: UITableViewController, ItemTableViewCellDe
             let text = inputTextField.text,
             !text.isEmpty else {return}
         
-        groceryItemController.addItem(withName: text)
+        groceryItemController.addItem(name: text, addToList: true)
         inputTextField.text = ""
         inputTextField.resignFirstResponder()
         tableView.reloadData()
     }
     
     @IBAction func clearCheckedItems(_ sender: Any) {
-        guard !inputTextField.isFirstResponder else {return}
-
-        groceryItemController.clearCheckedItems()
-        addClearButton.setTitle("Add Item", for: .normal)
-        tableView.reloadData()
+//        guard !inputTextField.isFirstResponder else {return}
+//
+//        GroceryItemController.clearCheckedItems()
+//        addClearButton.setTitle("Add Item", for: .normal)
+//        tableView.reloadData()
     }
     //MARK: - UITTextFieldDelegate Methods
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -145,6 +145,8 @@ class GroceryListTableViewController: UITableViewController, ItemTableViewCellDe
     private var hasCheckedItems = false
     @IBOutlet weak var addClearButton: UIButton!
     @IBOutlet weak var inputTextField: UITextField!
+    
+    private let groceryItemController = GroceryItemController.shared
     
     lazy var fetchedResultsController: NSFetchedResultsController<Item> = {
         let request:NSFetchRequest<Item> = Item.fetchRequest()

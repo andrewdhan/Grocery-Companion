@@ -52,7 +52,7 @@ class GroceryItemController {
         request.predicate = NSPredicate(format: "name == %@", name)
         
         do {
-            let result = context.fetch(request) as! Item
+            let result = try context.fetch(request) as! Item
             return result
         }
         catch {

@@ -1,5 +1,22 @@
+
 # Grocery Companion
 
-Allow users to create a grocery list and keep track of their grocery expenses. Uses transaction history to suggest most affordable grocery store to shop.
+> An app that cross-references previous purchases with the future shopping list to suggest the most affordable nearby grocery store
 
-This app will eventually use OCR technology to scan receipt and use the information to suggest the most affordable grocery store to make purchases.
+#### Features
+Users can:
+ 1. Create grocery lists
+ 2. Upload receipts manually or automatically by taking a photo of the receipt
+ 3. View a map of nearby grocery stores that shows expected cost of groceries based on user's grocery list and previous transaction history
+ 4. View a list of top affordable grocery stores
+
+#### Frameworks and APIs
+
+ 1. CoreData
+ 2. MapKit
+ 3. Codable
+ 4. Google Cloud Vision API
+
+### Status
+In development: integrating CoreData into codebase for data persistence
+

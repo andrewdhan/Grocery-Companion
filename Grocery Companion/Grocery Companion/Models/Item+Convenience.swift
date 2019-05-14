@@ -13,7 +13,9 @@ extension Item {
     convenience init(name: String, centValue: Int? = nil,  context: NSManagedObjectContext) {
         self.init(context: context)
         self.name = name
+        if let centValue = centValue {
         self.centValue = Int16(centValue)
+        }
     }
     
     public var price:Double {

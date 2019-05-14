@@ -1,28 +1,28 @@
+////
+////  ReceiptItemTableViewCell.swift
+////  Grocery Companion
+////
+////  Created by Andrew Dhan on 10/31/18.
+////  Copyright © 2018 Andrew Dhan. All rights reserved.
+////
 //
-//  ReceiptItemTableViewCell.swift
-//  Grocery Companion
+//import UIKit
 //
-//  Created by Andrew Dhan on 10/31/18.
-//  Copyright © 2018 Andrew Dhan. All rights reserved.
+//class ReceiptItemTableViewCell: UITableViewCell {
 //
-
-import UIKit
-
-class ReceiptItemTableViewCell: UITableViewCell {
-
-    func updateViews(){
-        guard let groceryItem = groceryItem,
-            let transactionID = transactionID else {return}
-        nameLabel.text = groceryItem.name
-        costLabel.text = groceryItem.getPriceWithID(transactionID: transactionID)?.value.currencyString()
-    }
-    var groceryItem: GroceryItem? {
-        didSet{
-            updateViews()
-        }
-    }
-    
-    var transactionID: UUID?
-    @IBOutlet weak var nameLabel: UITextField!
-    @IBOutlet weak var costLabel: UITextField!
-}
+//    func updateViews(){
+//        guard let groceryItem = groceryItem,
+//            let transactionID = transactionID else {return}
+//        nameLabel.text = groceryItem.name
+//        costLabel.text = groceryItem.getPriceWithID(transactionID: transactionID)?.value.currencyString()
+//    }
+//    var groceryItem: Item? {
+//        didSet{
+//            updateViews()
+//        }
+//    }
+//    
+//    var transactionID: UUID?
+//    @IBOutlet weak var nameLabel: UITextField!
+//    @IBOutlet weak var costLabel: UITextField!
+//}

@@ -12,10 +12,10 @@
         <attribute name="latitude" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="longitude" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
-        <relationship name="item" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Item" inverseName="store" inverseEntity="Item" syncable="YES"/>
+        <relationship name="item" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Item" inverseName="store" inverseEntity="Item" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Item" positionX="82.11328125" positionY="-59.12890625" width="128" height="118"/>
-        <element name="Store" positionX="-156.89453125" positionY="-83.51171875" width="128" height="118"/>
+        <element name="Item" positionX="82.11328125" positionY="-59.12890625" width="128" height="120"/>
+        <element name="Store" positionX="-156.89453125" positionY="-83.51171875" width="128" height="120"/>
     </elements>
 </model>

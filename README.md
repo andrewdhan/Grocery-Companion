@@ -3,6 +3,7 @@
 
 > An app that cross-references previous purchases with the future shopping list to suggest the most affordable nearby grocery store
 
+
 ### Features
 Users can:
  1. Create grocery lists

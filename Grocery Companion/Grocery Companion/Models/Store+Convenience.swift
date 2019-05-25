@@ -17,6 +17,7 @@ extension Store: MKAnnotation{
         self.latitude = latitude
         self.longitude = longitude
         self.isFavorite = isFavorite
+        self.itemHistory = [String:Int]() as NSDictionary
     }
     
     public var coordinate: CLLocationCoordinate2D{

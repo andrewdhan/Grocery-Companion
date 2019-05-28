@@ -41,11 +41,18 @@ class StoreController{
         return [Store]()
     }
     
-    func estimatedCostForGroceries(store: Store, items: [Item]) -> Double? {
+    func estimatedCostForGroceries(store: Store, items: [Item]) -> Int? {
 
-//        return items.compactMap{$0.cheapestPriceForStore(store: store)}.reduce(0,+)
-        return 0.0
-
+        guard let itemHistory = store.itemHistory as? [String:Int] else {return nil}
+        
+        let price = items.compactMap { (item) -> Int? in
+            guard let name = item.name else {return nil}
+            return itemHistory[name]
+            }.reduce(0) { (result, value) -> Int in
+                return result + value
+        }
+        
+        return price
     }
 
     func itemsAvailableFrom(items: [Item]){
@@ -53,12 +60,11 @@ class StoreController{
     }
 
     func averageStoreCoordinate() ->CLLocationCoordinate2D?{
-//        let stores = StoreController.stores
-//        guard !stores.isEmpty else {return nil}
-//        let avgLatitude =  stores.reduce(0) {$0 + $1.coordinate.latitude}/Double(stores.count)
-//        let avgLongitude = stores.reduce(0) {$0 + $1.coordinate.longitude}/Double(stores.count)
-//        return CLLocationCoordinate2D(latitude: avgLatitude, longitude: avgLongitude)
-        return CLLocationCoordinate2D()
+        let stores = StoreController.shared.stores
+        guard !stores.isEmpty else {return nil}
+        let avgLatitude =  stores.reduce(0) {$0 + $1.coordinate.latitude}/Double(stores.count)
+        let avgLongitude = stores.reduce(0) {$0 + $1.coordinate.longitude}/Double(stores.count)
+        return CLLocationCoordinate2D(latitude: avgLatitude, longitude: avgLongitude)
     }
 
 

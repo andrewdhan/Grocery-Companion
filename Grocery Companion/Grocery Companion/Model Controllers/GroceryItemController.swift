@@ -24,7 +24,7 @@ class GroceryItemController {
             centValue = Int(price*100)
         }
         
-        let item = Item(name: name, centValue: centValue, context: context)
+        let item = Item(name: name, context: context)
         
         item.isInList = addToList
         

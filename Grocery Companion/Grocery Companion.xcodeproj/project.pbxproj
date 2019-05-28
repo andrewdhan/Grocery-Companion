@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		10038429218AC5F3002E5496 /* ReceiptItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10038428218AC5F3002E5496 /* ReceiptItemTableViewCell.swift */; };
-		1003842D218AC963002E5496 /* TransactionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1003842C218AC963002E5496 /* TransactionController.swift */; };
 		1003842F218ADC58002E5496 /* StoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1003842E218ADC58002E5496 /* StoreController.swift */; };
 		10038431218B5D46002E5496 /* SuggestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10038430218B5D46002E5496 /* SuggestionsViewController.swift */; };
 		10038433218BA366002E5496 /* StoreDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10038432218BA366002E5496 /* StoreDetailView.swift */; };
@@ -36,7 +35,6 @@
 
 /* Begin PBXFileReference section */
 		10038428218AC5F3002E5496 /* ReceiptItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptItemTableViewCell.swift; sourceTree = "<group>"; };
-		1003842C218AC963002E5496 /* TransactionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionController.swift; sourceTree = "<group>"; };
 		1003842E218ADC58002E5496 /* StoreController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreController.swift; sourceTree = "<group>"; };
 		10038430218B5D46002E5496 /* SuggestionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionsViewController.swift; sourceTree = "<group>"; };
 		10038432218BA366002E5496 /* StoreDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreDetailView.swift; sourceTree = "<group>"; };
@@ -166,7 +164,6 @@
 			isa = PBXGroup;
 			children = (
 				108D95F32188FE5900D1B04D /* GroceryItemController.swift */,
-				1003842C218AC963002E5496 /* TransactionController.swift */,
 				1003842E218ADC58002E5496 /* StoreController.swift */,
 			);
 			path = "Model Controllers";
@@ -256,7 +253,6 @@
 				108438392286101300E50208 /* Item+Convenience.swift in Sources */,
 				108438352285B7E800E50208 /* GroceryModel.xcdatamodeld in Sources */,
 				108D95F921896BAE00D1B04D /* CameraPreviewViewController.swift in Sources */,
-				1003842D218AC963002E5496 /* TransactionController.swift in Sources */,
 				10038429218AC5F3002E5496 /* ReceiptItemTableViewCell.swift in Sources */,
 				10038435218BB314002E5496 /* StoreDetailTableViewController.swift in Sources */,
 				108D95F12188EA2C00D1B04D /* Extensions.swift in Sources */,

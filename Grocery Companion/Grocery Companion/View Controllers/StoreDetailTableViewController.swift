@@ -29,7 +29,11 @@ class StoreDetailTableViewController: UITableViewController {
         let item = items[indexPath.row]
        
         cell.textLabel?.text = item.name
-        cell.detailTextLabel?.text = item.cheapestPriceForStore(store: store)?.currencyString() ?? "N/A"
+        
+        guard let itemHistory = store.itemHistory as? [String:Int],
+        let name = item.name else {return UITableViewCell()}
+        
+        cell.detailTextLabel?.text = itemHistory[name]?.centValueToDollarString() ?? "N/A"
 
         return cell
     }
@@ -37,7 +41,8 @@ class StoreDetailTableViewController: UITableViewController {
 
     
     //MARK: - Properties
-    var items: [GroceryItem]?
+    var items: [Item]?
     var store: Store?
+    
     private let groceryItemController = GroceryItemController.shared
 }

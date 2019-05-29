@@ -24,8 +24,6 @@ class ReceiptItemTableViewCell: UITableViewCell {
             updateViews()
         }
     }
-    
-    var transactionID: UUID?
     var itemHistory: [ String: Int]?
     @IBOutlet weak var nameLabel: UITextField!
     @IBOutlet weak var costLabel: UITextField!

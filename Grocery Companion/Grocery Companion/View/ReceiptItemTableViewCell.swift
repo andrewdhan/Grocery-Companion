@@ -12,17 +12,19 @@ class ReceiptItemTableViewCell: UITableViewCell {
 
     func updateViews(){
         guard let groceryItem = groceryItem,
-            let transactionID = transactionID else {return}
+            let name = groceryItem.name,
+        let itemHistory = itemHistory,
+        let price = itemHistory[name] else {return}
+        
         nameLabel.text = groceryItem.name
-        costLabel.text = groceryItem.getPriceWithID(transactionID: transactionID)?.value.currencyString()
+        costLabel.text = price.centValueToDollarString()
     }
-    var groceryItem: GroceryItem? {
+    var groceryItem: Item? {
         didSet{
             updateViews()
         }
     }
-    
-    var transactionID: UUID?
+    var itemHistory: [ String: Int]?
     @IBOutlet weak var nameLabel: UITextField!
     @IBOutlet weak var costLabel: UITextField!
 }

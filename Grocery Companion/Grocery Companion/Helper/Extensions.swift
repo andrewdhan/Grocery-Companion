@@ -27,6 +27,16 @@ extension String{
     }
 }
 
+//assumes int represents centvalue and converts to string representation of dollar price
+extension Int {
+    func centValueToDollarString() -> String?{
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        
+        let dollarValue = Double(self)/10.00
+        return formatter.string(from: NSNumber(value: dollarValue))
+    }
+}
 extension Dictionary{
     func convertToTupleArray() -> [(Key, Value)]{
         var result = [(Key,Value)]()
@@ -37,14 +47,6 @@ extension Dictionary{
     }
 }
 
-extension Double {
-    func currencyString() -> String?{
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .currency
-        
-        return formatter.string(from: self.toNSNumber())
-    }
-}
 
 extension NSNumber{
     func currencyString() -> String?{

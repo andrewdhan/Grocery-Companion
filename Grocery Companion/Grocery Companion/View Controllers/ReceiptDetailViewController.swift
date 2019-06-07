@@ -9,6 +9,7 @@
 import UIKit
 import Vision
 
+//TODO: Rethink use of transaction controller and consider using different model that is not core data
 private var baseURL = URL(string: "https://vision.googleapis.com/v1/images:annotate")!
 
 class ReceiptDetailViewController: UIViewController, CameraPreviewViewControllerDelegate, UITableViewDataSource,  UITableViewDelegate, UITextFieldDelegate {

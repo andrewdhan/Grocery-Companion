@@ -67,4 +67,6 @@ fastlane/Preview.html
 fastlane/screenshots/**/*.png
 fastlane/test_output
 
+Grocery\ Companion/Grocery\ Companion/Resources/GoogleService-Info.plist
+
 Grocery\ Companion/Grocery\ Companion/Resources/APIKey.swift

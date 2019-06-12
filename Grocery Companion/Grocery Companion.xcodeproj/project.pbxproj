@@ -32,7 +32,9 @@
 		109D93EB225AA491006A6AF4 /* AnnotatedImageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109D93EA225AA491006A6AF4 /* AnnotatedImageRequest.swift */; };
 		109D93ED225C09F8006A6AF4 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109D93EC225C09F8006A6AF4 /* APIKey.swift */; };
 		10B7FDD02257D42B002AE242 /* DetectedText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B7FDCF2257D42B002AE242 /* DetectedText.swift */; };
+		10D4785722B0A5D7002D24F6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 10D4785622B0A5D7002D24F6 /* GoogleService-Info.plist */; };
 		10F348BC227777350008E286 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F348BB227777350008E286 /* Constants.swift */; };
+		393D736E06D86D9AE20416D5 /* Pods_Grocery_Companion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11B2D03588385B55B2DFD59F /* Pods_Grocery_Companion.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,7 +65,11 @@
 		109D93EA225AA491006A6AF4 /* AnnotatedImageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotatedImageRequest.swift; sourceTree = "<group>"; };
 		109D93EC225C09F8006A6AF4 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 		10B7FDCF2257D42B002AE242 /* DetectedText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectedText.swift; sourceTree = "<group>"; };
+		10D4785622B0A5D7002D24F6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		10F348BB227777350008E286 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		11B2D03588385B55B2DFD59F /* Pods_Grocery_Companion.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Grocery_Companion.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		98B4B032C9568AA7FA5114AC /* Pods-Grocery Companion.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Grocery Companion.release.xcconfig"; path = "Target Support Files/Pods-Grocery Companion/Pods-Grocery Companion.release.xcconfig"; sourceTree = "<group>"; };
+		CA2DC60C7ADFFA4303682150 /* Pods-Grocery Companion.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Grocery Companion.debug.xcconfig"; path = "Target Support Files/Pods-Grocery Companion/Pods-Grocery Companion.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,17 +77,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				393D736E06D86D9AE20416D5 /* Pods_Grocery_Companion.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		05675E23D74823BE0B1E3C26 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				11B2D03588385B55B2DFD59F /* Pods_Grocery_Companion.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		0E8DB00C0B8D86680CC7C31F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CA2DC60C7ADFFA4303682150 /* Pods-Grocery Companion.debug.xcconfig */,
+				98B4B032C9568AA7FA5114AC /* Pods-Grocery Companion.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		108D95C02188C19400D1B04D = {
 			isa = PBXGroup;
 			children = (
 				108D95CB2188C19400D1B04D /* Grocery Companion */,
 				108D95CA2188C19400D1B04D /* Products */,
+				0E8DB00C0B8D86680CC7C31F /* Pods */,
+				05675E23D74823BE0B1E3C26 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -97,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				108D95D02188C19400D1B04D /* Main.storyboard */,
+				10D4785622B0A5D7002D24F6 /* GoogleService-Info.plist */,
 				108D95E72188E6DD00D1B04D /* Models */,
 				108D95F52188FE6000D1B04D /* Model Controllers */,
 				108D95E42188D57100D1B04D /* View */,
@@ -182,9 +210,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 108D95DB2188C19600D1B04D /* Build configuration list for PBXNativeTarget "Grocery Companion" */;
 			buildPhases = (
+				7090112FBD22A8EDAB256EE2 /* [CP] Check Pods Manifest.lock */,
 				108D95C52188C19400D1B04D /* Sources */,
 				108D95C62188C19400D1B04D /* Frameworks */,
 				108D95C72188C19400D1B04D /* Resources */,
+				CDE8976512B613192FE8FC81 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -234,12 +264,62 @@
 			buildActionMask = 2147483647;
 			files = (
 				108D95D72188C19600D1B04D /* LaunchScreen.storyboard in Resources */,
+				10D4785722B0A5D7002D24F6 /* GoogleService-Info.plist in Resources */,
 				108D95D42188C19600D1B04D /* Assets.xcassets in Resources */,
 				108D95D22188C19400D1B04D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7090112FBD22A8EDAB256EE2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Grocery Companion-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CDE8976512B613192FE8FC81 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Grocery Companion/Pods-Grocery Companion-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Grocery Companion/Pods-Grocery Companion-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		108D95C52188C19400D1B04D /* Sources */ = {
@@ -412,6 +492,7 @@
 		};
 		108D95DC2188C19600D1B04D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CA2DC60C7ADFFA4303682150 /* Pods-Grocery Companion.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -432,6 +513,7 @@
 		};
 		108D95DD2188C19600D1B04D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 98B4B032C9568AA7FA5114AC /* Pods-Grocery Companion.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";

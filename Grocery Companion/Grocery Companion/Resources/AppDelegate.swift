@@ -3,10 +3,11 @@
 //  Grocery Companion
 //
 //  Created by Andrew Dhan on 10/30/18.
-//  Copyright © 2018 Andrew Liao. All rights reserved.
+//  Copyright © 2018 Andrew Dhan. All rights reserved.
 //
 
 import UIKit
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        FirebaseApp.configure()
         return true
     }
 

@@ -18,6 +18,8 @@
  2. Codable
  3. Google Cloud Vision API
 
+### Requirements
+To run this app, you will need to set up your fork with Google Cloud Vision API. Please refer to the documentation [here](https://cloud.google.com/vision/docs/how-to?authuser=1).
 ### Status
 In development
 
